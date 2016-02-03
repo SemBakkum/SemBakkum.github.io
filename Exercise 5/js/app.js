@@ -13,6 +13,7 @@
 			window.addEventListener('hashchange', function(hashObj) {
 				var hash = hashObj.newURL.split('#')[1];
 				sections.toggle(hash);
+				console.log(hash);
 			}, false);
 		}
 	};
