@@ -26,7 +26,7 @@ var config = {
 
 function EventTarget(){
     this._listeners = {}
-}
+};
 
 EventTarget.prototype = {
     constructor:EventTarget,
@@ -38,7 +38,7 @@ EventTarget.prototype = {
     fire:function(a){
     	"string" === typeof a && (a = {type: a});
     	a.target || a.target === this;
-    }
+    };
 
     fire:function(a){
         "string" === typeof a && (a = {type:a});
@@ -115,14 +115,14 @@ function _check_locations(event){
             }
         }
     }
-}
+};
 
 // Bereken het verchil in meters tussen twee punten
 function _calculate_distance(p1, p2){
     var pos1 = new google.maps.LatLng(p1.coords.latitude, p1.coords.longitude);
     var pos2 = new google.maps.LatLng(p2.coords.latitude, p2.coords.longitude);
     return Math.round(google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2), 0);
-}
+};
 
 
 // GOOGLE MAPS FUNCTIES
@@ -196,11 +196,11 @@ function generate_map(myOptions, canvasId){
 
     // Zorg dat de kaart geupdated wordt als het POSITION_UPDATED event afgevuurd wordt
     ET.addListener(positionUpdated, update_positie);
-}
+};
 
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
-}
+};
 
 // Update de positie van de gebruiker op de kaart
 function update_positie(event){
@@ -208,20 +208,20 @@ function update_positie(event){
     var newPos = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
     map.setCenter(newPos);
     currentPositionMarker.setPosition(newPos);
-}
+};
 
 // FUNCTIES VOOR DEBUGGING
 
 function _geo_error_handler(code, message) {
     debug_message('geo.js error '+code+': '+message);
-}
+};
 function debug_message(message){
     (customDebugging && debugId)?document.getElementById(debugId).innerHTML:console.log(message);
-}
+};
 function set_custom_debugging(debugId){
     debugId = this.debugId;
     customDebugging = true;
-}
+};
 
 
 
