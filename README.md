@@ -1,5 +1,10 @@
 # SemBakkum.github.io
 
+# CSS to the rescue
+
+<h1>Opdracht 1</h1> 
+<a href="https://oege.ie.hva.nl/~bakkums002/rescue/" target="_blank"> Profile of Mona Krajeck</a>
+
 # WAFS
 <h1>Opdracht 2 Voor-en nadelen JavaScript libraries/frameworks</h1>
 
