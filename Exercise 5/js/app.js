@@ -20,7 +20,16 @@
 
 	var sections = {
 		toggle: function(route) {
-			document.getElementById(route).style.display = 'block';
+				var secties = document.querySelectorAll('section');
+				console.log(secties);
+
+				for (var s = 0; s < secties.length; s++){
+					secties[s].classList.add("disabled");
+				}
+
+				var route1 = document.getElementById(route);
+				console.log(route1);
+				route1.classList.remove("disabled");
 		}
 	};
 	app.init();
