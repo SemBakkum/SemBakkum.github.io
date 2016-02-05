@@ -20,15 +20,13 @@
 
 	var sections = {
 		toggle: function(route) {
-				var secties = document.querySelectorAll('section');
-				console.log(secties);
+				var sections = document.querySelectorAll('section');
 
-				for (var s = 0; s < secties.length; s++){
-					secties[s].classList.add("disabled");
-				}
+                Array.prototype.forEach.call(sections, function(el) {
+                    el.classList.add('disabled');
+                });
 
 				var route1 = document.getElementById(route);
-				console.log(route1);
 				route1.classList.remove("disabled");
 		}
 	};
