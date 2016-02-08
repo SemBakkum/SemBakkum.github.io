@@ -13,10 +13,7 @@ code meer nodig zijn om tot een gewenst resultaat te komen, maar het zelfde resu
 de library aanspreken. Een nadeel hier van is dat je de library taal leert en geen Javascript of andere taal waarop de library 
 gebasseerd is.</p>
 
-<p>De library is waarschijnlijk beter beveiligd door dat deze gratis te gebruiken is en daarom door meerdere mensen 
-gebruikt wordt. Door het vele gebruik worden lekken in de library eerder aangekaart bij de makers van de library of de community die aan de 
-library werkt. Het nadeel hier van is dat gebruikers de library goed kunnen leren en de fouten niet aangeven bij de makers, maar juist deze 
-fouten tegen de gebruikers gaan gebruiken.</p> 
+<p>Doordat een library vaak open source is en zo door meerdere mensen wordt gebruikt, is de kans op het melden en maken van een lek velen malen groter. Het nadeel hier van is dat gebruikers de library goed kunnen leren en de fouten niet aangeven bij de makers, maar juist deze fouten tegen de gebruikers gaan gebruiken.</p> 
 
 <p>Door dat programmeurs dankzij libraries sneller kunnen coderen scheelt dit uiteindelijk in de kosten voor een client. Producten kunnen 
 sneller gemaakt worden waardoor er minder tijd in gestoken hoeft te worden.</p>
