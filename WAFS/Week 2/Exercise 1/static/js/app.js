@@ -10,19 +10,32 @@
 	var routes = {
 		init: function() {
 
-			var wheater = document.getElementById('demo');
+			var weather = document.getElementById('demo');
 
 			microAjax("http://api.openweathermap.org/data/2.5/weather?id=2759794&units=metric&appid=44db6a862fba0b067b1930da0d769e98", function(data){
 				data = JSON.parse(data);
-				var wheaterData = {
+				var weatherData = {
 					city: data.name,
 					temp: data.main.temp,
-					weather: data.weather[0].main
-
+					weatherType: data.weather[0].description,
+					weatherIcon: data.weather[0].icon,
+					country: data.sys.country,
+					sunUp: data.sys.sunset
 				}
-				console.log(wheaterData.weather);
+				console.log(weatherData.weather);
+				console.log(weatherData.sunUp);
 
-				Transparency.render(wheater, wheaterData);
+				var iconImg = document.getElementById('weatherIcon');
+
+				iconImg.src = 'http://openweathermap.org/img/w/' +weatherData.weatherIcon+ '.png';
+				console.log(iconImg);
+
+				var timeStampValue = parseInt(weatherData.sunUp);
+				var newTime = new Date(timeStampValue*1000);
+				document.getElementById('sunSetValue').innerHTML = newTime;
+				console.log(newTime);
+
+				Transparency.render(weather, weatherData);
 			})
 		}
 	}

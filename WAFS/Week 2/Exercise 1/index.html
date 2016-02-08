@@ -19,10 +19,11 @@
 		<!-- De main content begint hier -->
 		<main>
 			<section class="section" id="demo">
-				<p>City: <span data-bind="city"></span></p>
-				<p>Temprature: <span data-bind="temp"></span>&#x2103</p>
-				<p>Weather type: <span data-bind="weather"></span></p>
-				<p>City: <span data-bind="city"></span></p>
+				<h1><span data-bind="city"></span>, <span data-bind="country"></span></h1>
+				<p><img id="weatherIcon" src="" alt=""><strong><span data-bind="temp"></span>&#x2103</strong></p>
+				<p><span data-bind="weatherType"></span></p>
+				<img id="weatherIcon" src="" alt="">
+				<p>Sunset: <span id="sunSetValue"></span></p>
 			</section>
 		</main>
 		<footer>
