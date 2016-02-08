@@ -40,6 +40,6 @@ section {
 #lijst {
 	background: purple;
 	width: 100%;
-	height: 20em;
+	height: auto;
 	color: white;
 }
