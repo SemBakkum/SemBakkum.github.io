@@ -20,7 +20,7 @@
 					weatherType: data.weather[0].description,
 					weatherIcon: data.weather[0].icon,
 					country: data.sys.country,
-					sunUp: data.sys.sunset
+					sunDown: data.sys.sunset
 				}
 				console.log(weatherData.weather);
 				console.log(weatherData.sunUp);
@@ -30,10 +30,10 @@
 				iconImg.src = 'http://openweathermap.org/img/w/' +weatherData.weatherIcon+ '.png';
 				console.log(iconImg);
 
-				var timeStampValue = parseInt(weatherData.sunUp);
-				var newTime = new Date(timeStampValue*1000);
-				document.getElementById('sunSetValue').innerHTML = newTime;
-				console.log(newTime);
+				var sunDownValue = parseInt(weatherData.sunDown);
+				var newSunDown = new Date(sunDownValue*1000);
+				document.getElementById('sunSetValue').innerHTML = newSunDown;
+				console.log(newSunDown);
 
 				Transparency.render(weather, weatherData);
 			})
