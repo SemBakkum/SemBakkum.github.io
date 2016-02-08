@@ -208,12 +208,12 @@
             et.addListener(positionUpdated, update_positie);
             },
 
-            function isNumber(n) {
+            isNumber: function(n) {
             return !isNaN(parseFloat(n)) && isFinite(n);
             },
 
             // Update de positie van de gebruiker op de kaart
-            function updatePositie(event){
+            updatePositie: function(event){
             // use currentPosition to center the map
                 var newPos = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
                 map.setCenter(newPos);
@@ -227,14 +227,14 @@
 
         _geoErrorHandler: function(code, message) {
             debug_message('geo.js error '+code+': '+message);
-        };
+        },
         debugMessage: function(message){
             (customDebugging && debugId)?document.getElementById(debugId).innerHTML:console.log(message);
-        };
+        },
         setCustomDebugging: function(debugId){
             debugId = this.debugId;
             customDebugging = true;
-        };
+        }
     }
 })();
 

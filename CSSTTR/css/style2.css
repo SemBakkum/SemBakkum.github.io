@@ -1,0 +1,205 @@
+body { 
+	display: -webkit-box; 
+	display: -webkit-flex; 
+	display: -ms-flexbox; 
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	margin: 0;
+	font-family: "lato";
+	background-color: #E5E5E5;
+}
+
+@font-face {
+    font-family: 'Ampersand';
+    src: local('Baskerville'), local('Palatino'), local('Book Antiqua');
+    unicode-range: U+26;
+}
+
+h1 {
+	font-family: Ampersand, Arial, sans-serif;
+}
+
+h1, h2 {
+	color: #27408B;
+}
+
+body > header:first-of-type > h1{
+	color: white;
+}
+
+body > header:first-of-type {
+	background-color: #27408B;
+	height: 45em;
+	padding: 1em;
+	margin-bottom: 1em;
+	text-align: center;
+	color: white;
+	width: 100%;
+}
+
+body > header:first-of-type > nav {
+	width: 90%;
+	padding: 0;
+}
+
+body > header:first-of-type > nav > ul {
+	margin-top: 1.5em;
+	width: 100%;
+	margin-left: -4.2em;
+	margin-right: -4.2em;
+	height: 22em;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+body > header:first-of-type > nav > ul > li {
+	list-style-type: none;
+	text-align: left;
+	margin: 0.8em;
+	padding: 0.5em;
+	width: 100%;
+}
+
+body > header:first-of-type > nav > ul > li:hover {
+	background-color: #B8EEEE;
+}
+
+body > header:first-of-type > nav > ul > li:hover ~ a {
+	color: hotpink;
+}
+
+body > header:first-of-type > nav > ul > li > a { 
+	text-decoration: none;
+	color: white;
+	width: 100%;
+}
+
+header > nav > ul > li > a > svg{
+	width: 1.2em;
+	height: 1.2em;
+}
+
+a > svg{
+	fill: #20B2AA;
+}
+
+header:first-of-type > figure > img{
+	width: 8em;
+	height: 8em;
+	border-radius: 10em;
+	border: 0.4em solid #B8EEEE;
+	padding: 0.5em;
+}
+
+main { 
+	width: 100%;
+	margin: 0 auto;
+}
+
+main > article {
+	width: 100%; 
+	padding: 1em;
+	margin-bottom: 1em;
+	border-top: 0.5em solid rgba(39, 64, 139, 0.5);
+	background-color: white;
+}
+
+main > article:hover {
+	border-top: 0.5em solid #B8EEEE;
+}
+
+#password { 
+	width: 100%;
+}
+
+#password > form > fieldset { 
+	border: none;
+}
+
+#password > form > fieldset > legend { 
+	color: #27408B;
+	font-size: 1em;
+}
+
+#password > form > fieldset > label > span { 
+	display: none;
+}
+
+#password > form > fieldset > label > input { 
+	-webkit-box-pack: start; 
+	-webkit-justify-content: flex-start; 
+	    -ms-flex-pack: start; 
+	        justify-content: flex-start;
+	border: none;
+	border-bottom: 0.2em solid #999999;
+	margin-bottom: 1em;
+	font-size: 0.9em;
+	color: #27408B;
+	font-weight: bold;
+	margin-top: 1em;
+}
+
+#password > form > fieldset > button {
+	border: none;
+	padding: 1em;
+	margin-top: 1em;
+	background-color: #B8EEEE;
+	border-radius: 0.5em;
+	color: #27408B;
+	font-size: 1em;
+	font-weight: bold;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+}
+
+#password > form > fieldset > button:hover {
+	background-color: #27408B;
+	color: #B8EEEE;
+}
+
+#photo-albums { 
+	width: 100%;
+}
+
+#photo-albums > figure > img {
+	width: 100%;
+}
+
+#photo-albums > figure > svg {
+	display: none;
+}
+
+footer { 
+	display: -webkit-box; 
+	display: -webkit-flex; 
+	display: -ms-flexbox; 
+	display: flex;
+	width: 100%;
+	background: #27408B;
+	-webkit-flex-wrap : wrap;
+	    -ms-flex-wrap : wrap;
+	        flex-wrap : wrap;
+}
+
+footer > nav > ul > li, a {
+	list-style-type: none;
+	text-decoration: none;
+	color: white;
+}
+
+footer > ul > li, a {
+	list-style-type: none;
+	text-decoration: none;
+}
+
+footer > address > pre { 
+	white-space: pre-line;
+	margin-left: 2em;
+	color: white;
+}
