@@ -13,7 +13,7 @@
 		// Initializing routes.
 		init: function() {
 			//At initializing sets the hash to home.
-			window.location.hash = 'home';
+			window.location.hash = 'home';//Special thank to Emiel Zuurbier (https://github.com/EmielZuurbier/WAFS/blob/master/opdracht%205/static/script/script.js) for supplying me with this piece of code.
 			//Seeks for a hashchange in the URL
 			window.addEventListener('hashchange', function(hashObj) {
 				//If there is a haschange this is where to URL is spilt into two pieces and we use the secend piece after the #.
