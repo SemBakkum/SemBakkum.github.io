@@ -29,17 +29,18 @@
 		toggle: function(route) {
 				//Selects all sections in the HTML.
 				var select = document.querySelectorAll('section');
+				//Gets the parameter from the function, so which route is used at that moment in the URL.
+				var currentRoute = document.getElementById(route);
 				console.log(select);
 				//Counts how many sections there are and adds the class "disabled to them".
 				for (var s = 0; s < select.length; s++){
 					select[s].classList.add("disabled");
 				}
-				//Gets the parameter from the function, so which route is used at that moment in the URL.
-				var route1 = document.getElementById(route);
+				
 				//Logs the section of the route.
-				console.log(route1);
+				console.log(currentRoute);
 				//Removes the class "disabled" from that section.
-				route1.classList.remove("disabled");
+				currentRoute.classList.remove("disabled");
 		}
 	};
 	app.init();

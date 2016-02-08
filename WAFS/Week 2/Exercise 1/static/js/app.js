@@ -1,40 +1,30 @@
 (function () {
 	'use strict'
 
-    var app = {
-        init: function() {
-            routie({
-                'home': function() {
-                    debugger;
-                    sections.toggle(window.location.hash);
-                },
-                'localWheater': function() {
-                    sections.toggle(window.location.hash);
-                    wheater.init();
-                }
-            });
-        },
+	var app = {
+		init: function() { 
+			routes.init();
+		}
+	};
 
-  var wheater = {
-        init : function() {
-            microAjax("http://api.openweathermap.org/data/2.5/weather?q=Amsterdam&appid=44db6a862fba0b067b1930da0d769e98", function (data) {
-               console.log(data.);
-                /*var templateData = {
-                    name: data.username,
-                    city: data.city,
-                    country : data.country,
-                    likes : data.public_favorites_count,
-                    online : data.online,
-                    avatar : data.avatar_url,
-                    followers : data.followers_count,
-                    following : data.followings_count,
-                };
-                var template = document.getElementById("soundcloudTemplate");
-                Transparency.render(template, templateData);
-            });
-        }
-    }
+	var routes = {
+		init: function() {
 
-    };*/
+			var wheater = document.getElementById('demo');
+
+			microAjax("http://api.openweathermap.org/data/2.5/weather?q=Amsterdam&units=metric&appid=44db6a862fba0b067b1930da0d769e98", function(data){
+				data = JSON.parse(data);
+				var wheaterData = {
+					city: data.name,
+					temp: data.main.temp,
+					weather: data.weather[0].main
+
+				}
+				console.log(wheaterData.weather);
+
+				Transparency.render(wheater, wheaterData);
+			})
+		}
+	}
 	app.init();
 }());
