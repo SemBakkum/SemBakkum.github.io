@@ -1,18 +1,40 @@
 (function () {
 	'use strict'
 
+	var homeDisplay = document.getElementById('home');
+	var weatherDisplay = document.getElementById('weatherCity');
+
 	var app = {
 		init: function() { 
 			routes.init();
+
+			routie({
+				'home': function(){
+					sections.toggle('home');
+				},
+				'weatherZaandam': function(){
+					sections.toggle('weatherCity');
+					routes.init('http://api.openweathermap.org/data/2.5/weather?id=2744118&units=metric&appid=44db6a862fba0b067b1930da0d769e98');
+				},
+				'weatherAmsterdam': function(){
+					sections.toggle('weatherCity');
+					routes.init('http://api.openweathermap.org/data/2.5/weather?id=2759794&units=metric&appid=44db6a862fba0b067b1930da0d769e98');
+				},
+				'weatherZaanstad': function(){
+					sections.toggle('weatherCity');
+					routes.init('http://api.openweathermap.org/data/2.5/weather?id=2744113&units=metric&appid=44db6a862fba0b067b1930da0d769e98');
+				},
+				'*': function(){
+					homeDisplay.classList.add('active');	
+				}
+			});
 		}
 	};
 
 	var routes = {
-		init: function() {
+		init: function(urlCity) {
 
-			var weather = document.getElementById('demo');
-
-			microAjax("http://api.openweathermap.org/data/2.5/weather?id=2759794&units=metric&appid=44db6a862fba0b067b1930da0d769e98", function(data){
+			microAjax(urlCity, function(data){
 				data = JSON.parse(data);
 				var weatherData = {
 					city: data.name,
@@ -47,9 +69,28 @@
 				document.getElementById('gotDataValue').innerHTML = newGotData;
 				console.log(newGotData);				
 
-				Transparency.render(weather, weatherData);
+				Transparency.render(weatherDisplay, weatherData);
 			})
 		}
-	}
+	};
+
+	var sections = {
+		toggle: function(route){
+
+			var allSections = document.querySelectorAll('section');
+			var toggleSection = document.getElementById(route);
+
+			console.log(toggleSection);
+
+			// Source For Loop Sem Bakkum: https://github.com/SemBakkum/SemBakkum.github.io/tree/master/WAFS/Week%201/Exercise%205
+			for (var c = 0; c < allSections.length; c++) {
+				allSections[c].classList.remove('active');
+			}
+
+			toggleSection.classList.toggle('active');
+
+		}
+	};
+
 	app.init();
 }());

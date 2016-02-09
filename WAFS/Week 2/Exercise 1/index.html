@@ -12,13 +12,21 @@
 		<!-- De header, met een navigatie -->
 
 		<header>
+			<a href="#home">Home</a>
+			<a href="#weatherZaandam">Weather Zaandam</a>
+			<a href="#weatherAmsterdam">Weather Amsterdam</a>
+			<a href="#weatherZaanstad">Weather Zaanstad</a>
 		</header>
 
 
 
 		<!-- De main content begint hier -->
 		<main>
-			<section class="section" id="demo">
+			<section class="section" id="home">
+				<h1>Home</h1>
+			</section>
+
+			<section class="section" id="weatherCity">
 				<h1><span data-bind="city"></span>, <span data-bind="country"></span></h1>
 				<p><img id="weatherIcon" src="" alt=""><strong><span data-bind="temp"></span>&#x2103</strong></p>
 				<p><span data-bind="weatherType"></span></p>
