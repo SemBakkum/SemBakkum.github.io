@@ -9,7 +9,7 @@ body {
 	    -ms-flex-direction: column;
 	        flex-direction: column;
 	margin: 0;
-	font-family: "lato";
+	font-family: "lato", Helvetica, Arial, sans-serif;
 	background-color: #E5E5E5;
 }
 
