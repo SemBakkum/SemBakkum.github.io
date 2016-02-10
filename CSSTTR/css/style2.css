@@ -203,3 +203,25 @@ footer > address > pre {
 	margin-left: 2em;
 	color: white;
 }
+
+/*........Week 2 code.........*/
+
+figure {
+    max-width: 300px;
+    max-width: min-content;
+    margin: auto;
+}
+
+figure > img {
+	max-width: inherit;
+}
+
+
+
+
+
+
+
+
+
+

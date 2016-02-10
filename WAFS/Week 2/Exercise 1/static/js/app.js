@@ -47,7 +47,7 @@
 					gotData: data.dt,
 					windSpeed: data.wind.speed
 				}
-				console.log(weatherData.windSpeed)
+				console.log(weatherData)
 
 				var iconImg = document.getElementById('weatherIcon');
 
