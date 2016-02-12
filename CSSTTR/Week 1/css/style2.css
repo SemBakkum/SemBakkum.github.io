@@ -1,8 +1,15 @@
 body { 
+	display: -webkit-box; 
+	display: -webkit-flex; 
+	display: -ms-flexbox; 
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	margin: 0;
-	font-family: "Lato";
+	font-family: "lato", Helvetica, Arial, sans-serif;
 	background-color: #E5E5E5;
 }
 
@@ -35,7 +42,7 @@ body > header:first-of-type {
 }
 
 body > header:first-of-type > nav {
-	width: 100%;
+	width: 90%;
 	padding: 0;
 }
 
@@ -94,7 +101,7 @@ main {
 }
 
 main > article {
-	width: 90%; 
+	width: 100%; 
 	padding: 1em;
 	margin-bottom: 1em;
 	border-top: 0.5em solid rgba(39, 64, 139, 0.5);
@@ -106,7 +113,7 @@ main > article:hover {
 }
 
 #password { 
-	width: 90%;
+	width: 100%;
 }
 
 #password > form > fieldset { 
@@ -123,7 +130,10 @@ main > article:hover {
 }
 
 #password > form > fieldset > label > input { 
-	justify-content: flex-start;
+	-webkit-box-pack: start; 
+	-webkit-justify-content: flex-start; 
+	    -ms-flex-pack: start; 
+	        justify-content: flex-start;
 	border: none;
 	border-bottom: 0.2em solid #999999;
 	margin-bottom: 1em;
@@ -142,7 +152,10 @@ main > article:hover {
 	color: #27408B;
 	font-size: 1em;
 	font-weight: bold;
-	justify-content: flex-start;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
 }
 
 #password > form > fieldset > button:hover {
@@ -151,7 +164,7 @@ main > article:hover {
 }
 
 #photo-albums { 
-	width: 90%;
+	width: 100%;
 }
 
 #photo-albums > figure > img {
@@ -161,6 +174,59 @@ main > article:hover {
 #photo-albums > figure > svg {
 	display: none;
 }
+
+footer { 
+	display: -webkit-box; 
+	display: -webkit-flex; 
+	display: -ms-flexbox; 
+	display: flex;
+	width: 100%;
+	background: #27408B;
+	-webkit-flex-wrap : wrap;
+	    -ms-flex-wrap : wrap;
+	        flex-wrap : wrap;
+}
+
+footer > nav > ul > li, a {
+	list-style-type: none;
+	text-decoration: none;
+	color: white;
+}
+
+footer > ul > li, a {
+	list-style-type: none;
+	text-decoration: none;
+}
+
+footer > address > pre { 
+	white-space: pre-line;
+	margin-left: 2em;
+	color: white;
+}
+
+/*........Week 2 code.........*/
+@media screen and (min-width: 20em;){
+
+	body{
+		flex-direction: row;
+	}
+
+	figure {
+	    max-width: 3em;
+	    max-width: min-content;
+	    margin: auto;
+	}
+
+	figure > img {
+		max-width: inherit;
+	}
+
+	body > header:first-of-type{
+		width: 30%;
+	}
+}
+
+
 
 
 

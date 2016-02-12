@@ -13,6 +13,9 @@
 				'home': function(){
 					sections.toggle('home');
 				},
+				'Amsterdam': function(){
+					sections.toggle('weatherCity');
+				},
 				'*': function(){
 					homeDisplay.classList.add('active');	
 				}
@@ -53,9 +56,18 @@
 					return this.name;
 				}
 
+				// var directives = {
+				// 	link: {
+				// 		href: cityName,
+				// 		text: cityName
+				// 	}
+				// }
+
 				var directives = {
 					link: {
-						href: cityName,
+						href: function (params) {
+							return "#" + this.name
+						},
 						text: cityName
 					}
 				}

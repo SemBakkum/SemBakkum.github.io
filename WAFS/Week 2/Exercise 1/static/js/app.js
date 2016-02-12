@@ -2,40 +2,40 @@
 	'use strict'
 
 	var homeDisplay = document.getElementById('home');
-	var weatherDisplay = document.getElementById('weatherCity');
+	var weatherDisplay = document.getElementById('current');
+	var overviewDisplay = document.getElementById('overview');
 
 	var app = {
 		init: function() { 
-			routes.init();
 
 			routie({
-				'home': function(){
+				'': function(){
 					sections.toggle('home');
 				},
-				'weatherZaandam': function(){
-					sections.toggle('weatherCity');
-					routes.init('http://api.openweathermap.org/data/2.5/weather?id=2744118&units=metric&appid=44db6a862fba0b067b1930da0d769e98');
+				':city': function(city){
+					sections.toggle('current');
+					routes.current(city);
 				},
-				'weatherAmsterdam': function(){
-					sections.toggle('weatherCity');
-					routes.init('http://api.openweathermap.org/data/2.5/weather?id=2759794&units=metric&appid=44db6a862fba0b067b1930da0d769e98');
-				},
-				'weatherZaanstad': function(){
-					sections.toggle('weatherCity');
-					routes.init('http://api.openweathermap.org/data/2.5/weather?id=2744113&units=metric&appid=44db6a862fba0b067b1930da0d769e98');
-				},
-				'*': function(){
-					homeDisplay.classList.add('active');	
+				':city/overview': function(city) {
+					sections.toggle('overview');
+					routes.overview(city);
 				}
 			});
 		}
 	};
 
 	var routes = {
-		init: function(urlCity) {
 
-			microAjax(urlCity, function(data){
+		current: function(city) {
+			console.log(city);
+			microAjax('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
 				data = JSON.parse(data);
+				// var data2 = data;
+				// console.log(data2);
+				// var filterData = _.map(data, function(weather) {
+    //                 	return _.pick(weather, 'name','weather','main','dt','sys');
+    //                 });
+				// console.log(filterData);
 				var weatherData = {
 					city: data.name,
 					temp: data.main.temp,
@@ -47,6 +47,7 @@
 					gotData: data.dt,
 					windSpeed: data.wind.speed
 				}
+
 				console.log(weatherData)
 
 				var iconImg = document.getElementById('weatherIcon');
@@ -69,8 +70,70 @@
 				document.getElementById('gotDataValue').innerHTML = newGotData;
 				console.log(newGotData);				
 
-				Transparency.render(weatherDisplay, weatherData);
-			})
+				var directives = {
+					link: {
+						href: function() {
+							return '#' + city + '/overview';
+						}
+					}
+				}
+
+				Transparency.render(weatherDisplay, weatherData, directives);
+			});
+		},
+
+		overview: function(city) {
+			microAjax('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&units=metric&cnt=7&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
+				data = JSON.parse(data);
+				console.log(data);
+				var weatherOverview = {
+					day: helpers.calculateDatetime(data.list[1].dt),
+					temp: data.list[1].temp.day,
+					icon: helpers.getIcon(data.list[1].weather[0].icon),
+					day2: helpers.calculateDatetime(data.list[2].dt),
+					temp2: data.list[2].temp.day,
+					icon2: helpers.getIcon(data.list[2].weather[0].icon),
+					day3: helpers.calculateDatetime(data.list[3].dt),
+					temp3: data.list[3].temp.day,
+					icon3: helpers.getIcon(data.list[3].weather[0].icon),
+					day4: helpers.calculateDatetime(data.list[4].dt),
+					temp4: data.list[4].temp.day,
+					icon4: helpers.getIcon(data.list[4].weather[0].icon),
+					day5: helpers.calculateDatetime(data.list[5].dt),
+					temp5: data.list[5].temp.day,
+					icon5: helpers.getIcon(data.list[5].weather[0].icon),
+				}
+
+				var directives = {
+					icon: {
+						src: function() {
+							return this.icon;
+						}
+					},
+					icon2: {
+						src: function() {
+							return this.icon2;
+						}
+					},
+					icon3: {
+						src: function() {
+							return this.icon3;
+						}
+					},
+					icon4: {
+						src: function() {
+							return this.icon4;
+						}
+					},
+					icon5: {
+						src: function() {
+							return this.icon5;
+						}
+					},
+				}			
+
+				Transparency.render(overviewDisplay, weatherOverview, directives);
+			});
 		}
 	};
 
