@@ -1,6 +1,7 @@
 (function () {
 	'use strict'
 
+	//putting the sections in vars for later use.
 	var homeDisplay = document.getElementById('home');
 	var weatherDisplay = document.getElementById('current');
 	var overviewDisplay = document.getElementById('overview');
@@ -9,13 +10,16 @@
 		init: function() { 
 
 			routie({
+				//fallback if route doesn't exist. Credits to https://github.com/reauv/minor-web-app-from-scratch
 				'': function(){
 					sections.toggle('home');
 				},
+				//Goes to which city is displayed in the URL.
 				':city': function(city){
 					sections.toggle('current');
 					routes.current(city);
 				},
+				//Goes to which city/overview is displayed in de URL
 				':city/overview': function(city) {
 					sections.toggle('overview');
 					routes.overview(city);
@@ -27,14 +31,19 @@
 	var routes = {
 
 		current: function(city) {
+			//Console.log() the city that is selected.
 			console.log(city);
+			//Loads in the data from the API via microAjax.
 			microAjax('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
+				//Parses the data to a JSON format.
 				var data = JSON.parse(data);
-                   		
+                   	
+                   	//Filters the data so I only get what I need.	
                     var filteredData = _.pick(data, 'name', 'main', 'weather', 'sys', 'dt', 'wind');
 
                     console.log(filteredData);
 				
+				//Put data from filtered API in object.
 				var weatherData = {
 					city: filteredData.name,
 					temp: filteredData.main.temp,
@@ -49,11 +58,13 @@
 
 				console.log(weatherData)
 
+				//Change the source of the icon vith the property of the key.
 				var iconImg = document.getElementById('weatherIcon');
 
 				iconImg.src = 'http://openweathermap.org/img/w/' +weatherData.weatherIcon+ '.png';
 				console.log(iconImg);
 
+				//Calculate timestamps to UTC.
 				var sunDownValue = parseInt(weatherData.sunDown);
 				var newSunDown = new Date(sunDownValue*1000);
 				document.getElementById('sunSetValue').innerHTML = newSunDown;
@@ -69,6 +80,7 @@
 				document.getElementById('gotDataValue').innerHTML = newGotData;
 				console.log(newGotData);				
 
+				//Add links to section for forecast.
 				var directives = {
 					link: {
 						href: function() {
@@ -77,6 +89,7 @@
 					}
 				}
 
+				//Renders template with data.
 				Transparency.render(weatherDisplay, weatherData, directives);
 			});
 		},
@@ -89,6 +102,7 @@
                 console.log(filteredData2);
 				console.log(data);
 				var weatherOverview = {
+					//Gets function from helpers.js to calculate day & icon source.
 					day: helpers.calculateDatetime(filteredData2.list[1].dt),
 					temp: filteredData2.list[1].temp.day,
 					icon: helpers.getIcon(filteredData2.list[1].weather[0].icon),
@@ -147,7 +161,6 @@
 
 			console.log(toggleSection);
 
-			// Source For Loop Sem Bakkum: https://github.com/SemBakkum/SemBakkum.github.io/tree/master/WAFS/Week%201/Exercise%205
 			for (var c = 0; c < allSections.length; c++) {
 				allSections[c].classList.remove('active');
 			}
