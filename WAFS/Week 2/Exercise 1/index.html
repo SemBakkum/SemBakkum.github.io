@@ -12,10 +12,10 @@
 		<!-- De header, met een navigatie -->
 
 		<header>
-			<a href="index.html">Home</a>
-			<a href="#Zaandam">Weather Zaandam</a>
-			<a href="#Amsterdam">Weather Amsterdam</a>
-			<a href="#Zaanstad">Weather Zaanstad</a>
+			
+			
+			
+			
 		</header>
 
 
@@ -24,6 +24,12 @@
 		<main>
 			<section class="section" id="home">
 				<h1>Home</h1>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#Zaandam">Zaandam</a></li>
+					<li><a href="#Amsterdam">Amsterdam</a></li>
+					<li><a href="#Zaanstad">Zaanstad</a></li>
+				</ul>
 			</section>
 
 			<section class="section" id="current">
@@ -36,6 +42,7 @@
 				<p>Sunset: <span id="sunSetValue"></span></p>
 				<p>Windspeed: <span data-bind="windSpeed"></span>m/s</p>
 				<a data-bind="link">Overzicht</a>
+				<a href="index.html">Back to home</a>
 			</section>
 
 			<section class="section" id="overview">
@@ -69,6 +76,8 @@
 					<p><span data-bind="temp5"></span>&#x2103</p>
 					<img data-bind="icon5">
 				</article>
+
+				<a href="index.html">Back to home</a>
 				
 			</section>
 		</main>

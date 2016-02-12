@@ -29,23 +29,22 @@
 		current: function(city) {
 			console.log(city);
 			microAjax('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
-				data = JSON.parse(data);
-				// var data2 = data;
-				// console.log(data2);
-				// var filterData = _.map(data, function(weather) {
-    //                 	return _.pick(weather, 'name','weather','main','dt','sys');
-    //                 });
-				// console.log(filterData);
+				var data = JSON.parse(data);
+                   		
+                    var filteredData = _.pick(data, 'name', 'main', 'weather', 'sys', 'dt', 'wind');
+
+                    console.log(filteredData);
+				
 				var weatherData = {
-					city: data.name,
-					temp: data.main.temp,
-					weatherType: data.weather[0].description,
-					weatherIcon: data.weather[0].icon,
-					country: data.sys.country,
-					sunUp: data.sys.sunrise,
-					sunDown: data.sys.sunset,
-					gotData: data.dt,
-					windSpeed: data.wind.speed
+					city: filteredData.name,
+					temp: filteredData.main.temp,
+					weatherType: filteredData.weather[0].description,
+					weatherIcon: filteredData.weather[0].icon,
+					country: filteredData.sys.country,
+					sunUp: filteredData.sys.sunrise,
+					sunDown: filteredData.sys.sunset,
+					gotData: filteredData.dt,
+					windSpeed: filteredData.wind.speed
 				}
 
 				console.log(weatherData)
@@ -84,24 +83,27 @@
 
 		overview: function(city) {
 			microAjax('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&units=metric&cnt=7&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
-				data = JSON.parse(data);
+				var data = JSON.parse(data);
+				var filteredData2 = _.pick(data, 'list');
+
+                console.log(filteredData2);
 				console.log(data);
 				var weatherOverview = {
-					day: helpers.calculateDatetime(data.list[1].dt),
-					temp: data.list[1].temp.day,
-					icon: helpers.getIcon(data.list[1].weather[0].icon),
-					day2: helpers.calculateDatetime(data.list[2].dt),
-					temp2: data.list[2].temp.day,
-					icon2: helpers.getIcon(data.list[2].weather[0].icon),
-					day3: helpers.calculateDatetime(data.list[3].dt),
-					temp3: data.list[3].temp.day,
-					icon3: helpers.getIcon(data.list[3].weather[0].icon),
-					day4: helpers.calculateDatetime(data.list[4].dt),
-					temp4: data.list[4].temp.day,
-					icon4: helpers.getIcon(data.list[4].weather[0].icon),
-					day5: helpers.calculateDatetime(data.list[5].dt),
-					temp5: data.list[5].temp.day,
-					icon5: helpers.getIcon(data.list[5].weather[0].icon),
+					day: helpers.calculateDatetime(filteredData2.list[1].dt),
+					temp: filteredData2.list[1].temp.day,
+					icon: helpers.getIcon(filteredData2.list[1].weather[0].icon),
+					day2: helpers.calculateDatetime(filteredData2.list[2].dt),
+					temp2: filteredData2.list[2].temp.day,
+					icon2: helpers.getIcon(filteredData2.list[2].weather[0].icon),
+					day3: helpers.calculateDatetime(filteredData2.list[3].dt),
+					temp3: filteredData2.list[3].temp.day,
+					icon3: helpers.getIcon(filteredData2.list[3].weather[0].icon),
+					day4: helpers.calculateDatetime(filteredData2.list[4].dt),
+					temp4: filteredData2.list[4].temp.day,
+					icon4: helpers.getIcon(filteredData2.list[4].weather[0].icon),
+					day5: helpers.calculateDatetime(filteredData2.list[5].dt),
+					temp5: filteredData2.list[5].temp.day,
+					icon5: helpers.getIcon(filteredData2.list[5].weather[0].icon),
 				}
 
 				var directives = {

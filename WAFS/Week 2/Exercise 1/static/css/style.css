@@ -1,7 +1,27 @@
-.active {
-	display: block;
+section{
+	display:none;
 }
 
-section {
-	display: none;
+.active{
+	display:block;
+}
+
+body{
+	font-family: "lato", arial, helvetica, sans-serif;
+	background-color: springGreen;
+}
+
+
+
+li{
+	list-style-type: none;
+	padding: 1em;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	color: papayawhip;
 }
