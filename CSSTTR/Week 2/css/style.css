@@ -1,7 +1,16 @@
 body { 
+	display: -webkit-box; 
+	display: -webkit-flex; 
+	display: -ms-flexbox; 
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
 	margin: 0;
 	font-family: "Lato";
 	background-color: #E5E5E5;
@@ -82,8 +91,15 @@ a{
 }
 
 main{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	width: 75%;
 }
 
@@ -109,15 +125,21 @@ article:hover {
 #profile-picture:target {
     display: block;
     width: 70vw;
+    padding: 16px;
     padding: 1rem;
     position: absolute;
     top: -30%;
     left: 50%;
-    transform: translate(-50%, 50%);
+    -webkit-transform: translate(-50%, 50%);
+        -ms-transform: translate(-50%, 50%);
+            transform: translate(-50%, 50%);
     box-shadow: 0 0 0 100vmax rgba(0,0,0,.8);
 }
 
 .current-profile-picture {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	min-height: 100vh;
 	margin: 0;
@@ -128,9 +150,17 @@ article:hover {
 }
 
 .filter-effects{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	align-content: flex-start;
-	justify-content: center;
+	-webkit-align-content: flex-start;
+	    -ms-flex-line-pack: start;
+	        align-content: flex-start;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	text-align: center;
 }
 
@@ -143,27 +173,37 @@ article:hover {
 
 .effect-01{
 	-webkit-filter: sepia(1);
-  	filter: sepia(1);
+  	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.393 0.769 0.189 0 0 0.349 0.686 0.168 0 0 0.272 0.534 0.131 0 0 0 0 0 1 0" /></filter></svg>#filter');
+  	-webkit-filter: sepia(1);
+  	        filter: sepia(1);
 }
 
 .effect-02{
 	-webkit-filter: grayscale(1);
-  	filter: grayscale(1);
+  	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" /></filter></svg>#filter');
+  	-webkit-filter: grayscale(1);
+  	        filter: grayscale(1);
 }
 
 .effect-03{
 	-webkit-filter: saturate(4);
-  	filter: saturate(4);
+  	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="3.361 -2.145 -0.21599999999999997 0 0 -0.639 1.895 -0.21599999999999997 0 0 -0.639 -2.145 3.7840000000000003 0 0 0 0 0 1 0" /></filter></svg>#filter');
+  	-webkit-filter: saturate(4);
+  	        filter: saturate(4);
 }
 
 .effect-04{
   	-webkit-filter: contrast(2);
-  	filter: contrast(2);
+  	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="2" intercept="-0.5" /><feFuncG type="linear" slope="2" intercept="-0.5" /><feFuncB type="linear" slope="2" intercept="-0.5" /></feComponentTransfer></filter></svg>#filter');
+  	-webkit-filter: contrast(2);
+  	        filter: contrast(2);
 }
 
 .effect-05{
 	-webkit-filter: hue-rotate(90deg);
-  	filter: hue-rotate(90deg);
+  	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="hueRotate" color-interpolation-filters="sRGB" values="90" /></filter></svg>#filter');
+  	-webkit-filter: hue-rotate(90deg);
+  	        filter: hue-rotate(90deg);
 }
 
 [role="button"]{
@@ -182,15 +222,29 @@ article:hover {
 }
 
 #password{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	width: 15em;
 }
 
 #password > form > fieldset { 
 	border: none;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 }
 
 #password > form > fieldset > legend { 
@@ -229,17 +283,28 @@ article:hover {
 }
 
 #photo-albums	{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	flex-wrap: wrap;
-    justify-content: space-around;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
 }
 
 #photo-albums > header { 
-	flex-basis: 100%;
+	-webkit-flex-basis: 100%; 
+	    -ms-flex-preferred-size: 100%; 
+	        flex-basis: 100%;
 }
 
 #photo-albums > figure { 
-	flex-basis: 40%;
+	-webkit-flex-basis: 40%; 
+	    -ms-flex-preferred-size: 40%; 
+	        flex-basis: 40%;
 	margin: 0;
 }
 
@@ -248,9 +313,9 @@ article:hover {
 }
 
 figure {
-    max-width: 300px;
-    max-width: min-content;
-    margin: auto;
+    max-width: 300px;
+    max-width: min-content;
+    margin: auto;
 }
 
 figure > img { 
@@ -277,19 +342,22 @@ footer > nav > ul > li, a {
 footer > ul > li, a {
 	list-style-type: none;
 	text-decoration: none;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 18em;
-    height: 10em;
+    align-items: center;
+    justify-content: center;
+    width: 18em;
+    height: 10em;
 }
 
 footer > address > pre { 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 18em;
-    height: 10em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18em;
+    height: 10em;
 	color: white; 
 }
 
