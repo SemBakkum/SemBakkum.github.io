@@ -41,47 +41,31 @@
                    	//Filters the data so I only get what I need.	
                     var filteredData = _.pick(data, 'name', 'main', 'weather', 'sys', 'dt', 'wind');
 
-                    console.log(filteredData);
+                    console.table(filteredData);
 				
 				//Put data from filtered API in object.
 				var weatherData = {
 					city: filteredData.name,
 					temp: filteredData.main.temp,
 					weatherType: filteredData.weather[0].description,
-					weatherIcon: filteredData.weather[0].icon,
+					weatherIcon: helpers.getIcon(filteredData.weather[0].icon),
 					country: filteredData.sys.country,
-					sunUp: filteredData.sys.sunrise,
-					sunDown: filteredData.sys.sunset,
-					gotData: filteredData.dt,
+					sunUp: helpers.calculateDatetime(filteredData.sys.sunrise),
+					sunDown: helpers.calculateDatetime(filteredData.sys.sunset),
+					gotData: helpers.calculateDatetime(filteredData.dt),
 					windSpeed: filteredData.wind.speed
 				}
 
-				console.log(weatherData)
-
-				//Change the source of the icon vith the property of the key.
-				var iconImg = document.getElementById('weatherIcon');
-
-				iconImg.src = 'http://openweathermap.org/img/w/' +weatherData.weatherIcon+ '.png';
-				console.log(iconImg);
-
-				//Calculate timestamps to UTC.
-				var sunDownValue = parseInt(weatherData.sunDown);
-				var newSunDown = new Date(sunDownValue*1000);
-				document.getElementById('sunSetValue').innerHTML = newSunDown;
-				console.log(newSunDown);
-
-				var sunUpValue = parseInt(weatherData.sunUp);
-				var newSunUp = new Date(sunUpValue*1000);
-				document.getElementById('sunUpValue').innerHTML = newSunUp;
-				console.log(newSunUp);
-
-				var gotDataValue = parseInt(weatherData.gotData);
-				var newGotData = new Date(gotDataValue*1000);
-				document.getElementById('gotDataValue').innerHTML = newGotData;
-				console.log(newGotData);				
+				console.log(weatherData)			
 
 				//Add links to section for forecast.
 				var directives = {
+					icon: {
+						src: function() {
+							return this.weatherIcon;
+						}
+					},
+
 					link: {
 						href: function() {
 							return '#' + city + '/overview';
@@ -101,51 +85,25 @@
 
                 console.log(filteredData2);
 				console.log(data);
-				var weatherOverview = {
-					//Gets function from helpers.js to calculate day & icon source.
-					day: helpers.calculateDatetime(filteredData2.list[1].dt),
-					temp: filteredData2.list[1].temp.day,
-					icon: helpers.getIcon(filteredData2.list[1].weather[0].icon),
-					day2: helpers.calculateDatetime(filteredData2.list[2].dt),
-					temp2: filteredData2.list[2].temp.day,
-					icon2: helpers.getIcon(filteredData2.list[2].weather[0].icon),
-					day3: helpers.calculateDatetime(filteredData2.list[3].dt),
-					temp3: filteredData2.list[3].temp.day,
-					icon3: helpers.getIcon(filteredData2.list[3].weather[0].icon),
-					day4: helpers.calculateDatetime(filteredData2.list[4].dt),
-					temp4: filteredData2.list[4].temp.day,
-					icon4: helpers.getIcon(filteredData2.list[4].weather[0].icon),
-					day5: helpers.calculateDatetime(filteredData2.list[5].dt),
-					temp5: filteredData2.list[5].temp.day,
-					icon5: helpers.getIcon(filteredData2.list[5].weather[0].icon),
+				var weatherOverview = [];
+
+				//Gets function from helpers.js to calculate day & icon source.
+				for( var i = 1; i <= 5; i++){
+					weatherOverview.push({
+						day: helpers.calculateDatetime(filteredData2.list[i].dt),
+						temp: filteredData2.list[i].temp.day,
+						icon: helpers.getIcon(filteredData2.list[i].weather[0].icon)
+					})
 				}
 
+				console.table(weatherOverview);
+
 				var directives = {
-					icon: {
+					icons: {
 						src: function() {
 							return this.icon;
 						}
-					},
-					icon2: {
-						src: function() {
-							return this.icon2;
-						}
-					},
-					icon3: {
-						src: function() {
-							return this.icon3;
-						}
-					},
-					icon4: {
-						src: function() {
-							return this.icon4;
-						}
-					},
-					icon5: {
-						src: function() {
-							return this.icon5;
-						}
-					},
+					}
 				}			
 
 				Transparency.render(overviewDisplay, weatherOverview, directives);

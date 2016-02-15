@@ -12,10 +12,7 @@
 		<!-- De header, met een navigatie -->
 
 		<header>
-			
-			
-			
-			
+			<a href="index.html">home</a>
 		</header>
 
 
@@ -25,7 +22,6 @@
 			<section class="section" id="home">
 				<h1>Home</h1>
 				<ul>
-					<li><a href="index.html">Home</a></li>
 					<li><a href="#Zaandam">Zaandam</a></li>
 					<li><a href="#Amsterdam">Amsterdam</a></li>
 					<li><a href="#Zaanstad">Zaanstad</a></li>
@@ -36,49 +32,21 @@
 				<h1><span data-bind="city"></span>, <span data-bind="country"></span></h1>
 				<p><img id="weatherIcon" src="" alt=""><strong><span data-bind="temp"></span>&#x2103</strong></p>
 				<p><span data-bind="weatherType"></span></p>
-				<img id="weatherIcon" src="" alt="">
-				<p>Pulled data on: <span id="gotDataValue"></span></p>
-				<p>Sunrise: <span id="sunUpValue"></span></p>
-				<p>Sunset: <span id="sunSetValue"></span></p>
+				<img data-bind="icon" src="" alt="">
+				<p>Pulled data on: <span id="gotData"></span></p>
+				<p>Sunrise: <span id="sunUp"></span></p>
+				<p>Sunset: <span id="sunDown"></span></p>
 				<p>Windspeed: <span data-bind="windSpeed"></span>m/s</p>
 				<a data-bind="link">Overzicht</a>
 				<a href="index.html">Back to home</a>
 			</section>
 
 			<section class="section" id="overview">
-
 				<article>
 					<span data-bind="day"></span>
 					<p><span data-bind="temp"></span>&#x2103</p>
-					<img data-bind="icon">
+					<img data-bind="icons" />
 				</article>
-
-				<article>
-					<span data-bind="day2"></span>
-					<p><span data-bind="temp2"></span>&#x2103</p>
-					<img data-bind="icon2">
-				</article>
-
-				<article>
-					<span data-bind="day3"></span>
-					<p><span data-bind="temp3"></span>&#x2103</p>
-					<img data-bind="icon3">
-				</article>
-
-				<article>
-					<span data-bind="day4"></span>
-					<p><span data-bind="temp4"></span>&#x2103</p>
-					<img data-bind="icon4">
-				</article>
-
-				<article>
-					<span data-bind="day5"></span>
-					<p><span data-bind="temp5"></span>&#x2103</p>
-					<img data-bind="icon5">
-				</article>
-
-				<a href="index.html">Back to home</a>
-				
 			</section>
 		</main>
 		<footer>
