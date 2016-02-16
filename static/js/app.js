@@ -96,6 +96,13 @@
                 console.log(filteredData2);
 				console.log(data);
 
+				var mc = new Hammer(overviewDisplay);
+
+				mc.on ("swiperight", function(ev){
+					console.log('swiperight');
+					routie(':city');
+				})
+
 				var weatherOverview = [];
 
 				//Gets function from helpers.js to calculate day & icon source.
