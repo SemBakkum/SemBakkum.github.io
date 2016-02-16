@@ -42,6 +42,13 @@
                     var filteredData = _.pick(data, 'name', 'main', 'weather', 'sys', 'dt', 'wind');
 
                     console.table(filteredData);
+
+    //                 var mc = new Hammer(overviewDisplay);
+
+				// mc.on ("swipeleft", function(ev){
+				// 	routie(':city/overview');
+				// 	console.log('swipeleft');
+				// })
 				
 				//Put data from filtered API in object.
 				var weatherData = {
@@ -79,12 +86,14 @@
 		},
 
 		overview: function(city) {
+
 			microAjax('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&units=metric&cnt=7&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
 				var data = JSON.parse(data);
 				var filteredData2 = _.pick(data, 'list');
 
                 console.log(filteredData2);
 				console.log(data);
+
 				var weatherOverview = [];
 
 				//Gets function from helpers.js to calculate day & icon source.
