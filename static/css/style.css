@@ -78,3 +78,7 @@ a:hover{
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
 }
+
+a{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}

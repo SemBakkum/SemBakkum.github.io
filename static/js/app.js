@@ -6,6 +6,8 @@
 	var weatherDisplay = document.getElementById('current');
 	var overviewDisplay = document.getElementById('overview');
 
+	document.addEventListener("touchstart", function(){}, true);
+
 	var app = {
 		init: function() { 
 
