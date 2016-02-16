@@ -9,27 +9,35 @@
 	</head>
 	<body>
 
+		<script type="text/javascript">
+			document.addEventListener("touchstart", function(){}, true);
+		</script>
+
 		<!-- De header, met een navigatie -->
 
 		<header>
-			<a href="app.html">home</a>
+			<nav>
+				<label for="show-menu" class="show-menu">Show Menu</label>
+				<input type="checkbox" id="show-menu" role="button">
+				<ul id="menu">
+					<li>
+						<a href="app.html">Home</a>
+					</li>
+					<li>
+						<a href="#Amsterdam">Amsterdam</a>
+					</li>
+					<li>
+						<a href="#Zaandam">Zaandam</a>
+					</li>
+					<li><a href="#Zaanstad">Zaanstad</a></li>
+				</ul>
+			</nav>
 		</header>
-
-
 
 		<!-- De main content begint hier -->
 		<main>
 			<section class="section" id="home">
-				<script type="text/javascript">
-					document.addEventListener("touchstart", function(){}, true);
-				</script>
-
-				<h1>Home</h1>
-				<ul>
-					<li><a href="#Zaandam">Zaandam</a></li>
-					<li><a href="#Amsterdam">Amsterdam</a></li>
-					<li><a href="#Zaanstad">Zaanstad</a></li>
-				</ul>
+			
 			</section>
 
 			<div id="spinner"></div>
