@@ -43,12 +43,12 @@
 
                     console.table(filteredData);
 
-    //                 var mc = new Hammer(overviewDisplay);
+                    var mc = new Hammer(overviewDisplay);
 
-				// mc.on ("swipeleft", function(ev){
-				// 	routie(':city/overview');
-				// 	console.log('swipeleft');
-				// })
+				mc.on ("swipeleft", function(ev){
+					routie(':city/overview');
+					console.log('swipeleft');
+				})
 				
 				//Put data from filtered API in object.
 				var weatherData = {
