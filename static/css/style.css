@@ -156,6 +156,9 @@ input{
 	font-size: 2em;
 	margin-bottom: 1em;
 	background: #EFEFEF;
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .sun{
