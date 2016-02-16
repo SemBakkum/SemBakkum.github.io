@@ -36,6 +36,9 @@
 			//Console.log() the city that is selected.
 			console.log(city);
 
+			document.addEventListener("touchstart", function(){}, true);
+
+
 			weatherDisplay.style.display = 'none';
 			document.getElementById('spinner').style.display = 'block';
 			//Loads in the data from the API via microAjax.
@@ -96,6 +99,10 @@
 		},
 
 		overview: function(city) {
+
+			document.addEventListener("touchstart", function(){}, true);
+
+
 			weatherDisplay.style.display = 'none';
 			overviewDisplay.style.display = 'none';
 			document.getElementById('spinner').style.display = 'block';
