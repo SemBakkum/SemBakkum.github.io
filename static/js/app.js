@@ -33,8 +33,13 @@
 		current: function(city) {
 			//Console.log() the city that is selected.
 			console.log(city);
+
+			weatherDisplay.style.display = 'none';
+			document.getElementById('spinner').style.display = 'block';
 			//Loads in the data from the API via microAjax.
 			microAjax('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
+				document.getElementById('spinner').style.display = 'none';
+				weatherDisplay.style.display = 'block';
 				//Parses the data to a JSON format.
 				var data = JSON.parse(data);
                    	
@@ -49,7 +54,8 @@
 
 				mc.on ("swipeleft", function(ev){
 					console.log('swipeleft');
-					routie(':city/overview');
+					console.log(window.location.hash);
+					routie( window.location.hash + '/overview')
 				})
 				
 				//Put data from filtered API in object.
@@ -59,9 +65,9 @@
 					weatherType: filteredData.weather[0].description,
 					weatherIcon: helpers.getIcon(filteredData.weather[0].icon),
 					country: filteredData.sys.country,
-					sunUp: helpers.calculateDatetime(filteredData.sys.sunrise),
-					sunDown: helpers.calculateDatetime(filteredData.sys.sunset),
-					gotData: helpers.calculateDatetime(filteredData.dt),
+					sunUp: helpers.calculateDatetime(filteredData.sys.sunrise, true),
+					sunDown: helpers.calculateDatetime(filteredData.sys.sunset, true),
+					gotData: helpers.calculateDatetime(filteredData.dt, true),
 					windSpeed: filteredData.wind.speed
 				}
 
@@ -88,8 +94,12 @@
 		},
 
 		overview: function(city) {
-
+			weatherDisplay.style.display = 'none';
+			overviewDisplay.style.display = 'none';
+			document.getElementById('spinner').style.display = 'block';
 			microAjax('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&units=metric&cnt=7&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
+				document.getElementById('spinner').style.display = 'none';
+				overviewDisplay.style.display = 'block';
 				var data = JSON.parse(data);
 				var filteredData2 = _.pick(data, 'list');
 
@@ -100,7 +110,7 @@
 
 				mc.on ("swiperight", function(ev){
 					console.log('swiperight');
-					routie(':city');
+					routie('city');
 				})
 
 				var weatherOverview = [];
