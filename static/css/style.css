@@ -189,6 +189,21 @@ input{
 	text-decoration: none;
 }
 
+#overview > article:nth-of-type(odd){
+	height: auto;
+	padding: 1em;
+}
+
+#overview > article:nth-of-type(even){
+	background-color: #19C589;
+	height: auto;
+	padding: 1em;
+}
+
+#overview > article > span:first-of-type{
+	font-weight: 900;
+}
+
 
 /*Responsive Styles*/
 
