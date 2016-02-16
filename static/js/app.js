@@ -119,7 +119,7 @@
 
 				mc.on ("swiperight", function(ev){
 					console.log('swiperight');
-					routie('city');
+					routie( window.location.hash );
 				})
 
 				var weatherOverview = [];
