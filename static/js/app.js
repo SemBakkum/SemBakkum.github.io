@@ -43,11 +43,13 @@
 
                     console.table(filteredData);
 
-                    var mc = new Hammer(overviewDisplay);
+                    
+
+                    var mc = new Hammer(current);
 
 				mc.on ("swipeleft", function(ev){
-					routie(':city/overview');
 					console.log('swipeleft');
+					routie(':city/overview');
 				})
 				
 				//Put data from filtered API in object.
