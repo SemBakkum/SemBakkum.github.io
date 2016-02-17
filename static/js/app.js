@@ -60,7 +60,7 @@
 				console.log('swiperight');
 				routie( window.location.hash.split('/')[0]);
 				console.log(routie);
-				overviewDisplay.style.display = 'none';
+				overviewDisplay.classList.remove('active')
 			});
 		},
 
@@ -76,7 +76,7 @@
 
 			//function to call when shake occurs
 			function shakeEventDidOccur () {
-				routie(window.location.hash.split('/')[0]);
+				routie('app.html');
 			}
 		}
 	}
