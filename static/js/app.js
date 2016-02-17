@@ -76,9 +76,7 @@
 
 			//function to call when shake occurs
 			function shakeEventDidOccur () {
-
-			    //put your own code here etc.
-			    alert('shake!');
+				routie(window.location.hash.split('/')[0]);
 			}
 		}
 	}
