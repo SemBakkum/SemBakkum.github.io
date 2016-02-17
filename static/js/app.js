@@ -107,7 +107,7 @@
 
                 gestures.left();
 
-				gestures.shakeStart.start();
+				gestures.shakeStart();
 
 				window.addEventListener('shake', shakeGo, false);
 
@@ -166,7 +166,7 @@
 
 				gestures.right();
 
-				gestures.shakeStart.start();
+				gestures.shakeStart();
 
 				window.addEventListener('shake', shakeGo, false);
 
