@@ -76,7 +76,7 @@
 
 			//function to call when shake occurs
 			function shakeEventDidOccur () {
-				routie('app.html');
+				routie('');
 			}
 		}
 	}
