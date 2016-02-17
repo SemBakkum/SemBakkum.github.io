@@ -109,7 +109,7 @@
 
 				gestures.shakeStart();
 
-				window.addEventListener('shake', shakeGo, false);
+				window.addEventListener('shake', gestures.shakeGo, false);
 
 				gestures.shakeGo();
 
@@ -168,11 +168,9 @@
 
 				gestures.shakeStart();
 
-				window.addEventListener('shake', shakeGo, false);
+				window.addEventListener('shake', gestures.shakeGo, false);
 
 				gestures.shakeGo();
-
-				window.addEventListener('shake', shakeEventDidOccur, false);
 
 				var weatherOverview = [];
 
