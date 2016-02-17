@@ -75,6 +75,7 @@
 				//function to call when shake occurs
 				function shakeEventDidOccur () {
 					routie(window.location.hash.split('#')[0])
+					weatherDisplay.style.display = 'none';
 				}
 
 				
