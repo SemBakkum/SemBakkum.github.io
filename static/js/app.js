@@ -166,15 +166,13 @@
 
 				gestures.right();
 
-				.start();
+				gestures.shakeStart.start();
+
+				window.addEventListener('shake', shakeGo, false);
+
+				gestures.shakeGo();
 
 				window.addEventListener('shake', shakeEventDidOccur, false);
-
-				//function to call when shake occurs
-				function shakeEventDidOccur () {
-					routie(window.location.hash.split('#')[0])
-					overviewDisplay.style.display = 'none';
-				}
 
 				var weatherOverview = [];
 
