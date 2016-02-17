@@ -157,8 +157,8 @@ input{
 
 ul.gsd li ul a
 {
-border:1px solid #B30B0B;
-color:#000000;
+border:1px solid #EFEFEF;
+color:white;
 text-align:center;
 width:auto;
 border-radius:0;
@@ -174,24 +174,24 @@ background:none;
 ul.gsd li ul
 {
 	padding: 0;
-	border: 1px solid #B30B0B;
+	border: 1px solid #EFEFEF;
 	width: 200px;
 	display: none;
 	position: absolute;
 	list-style-type: none;
 	top: 51px;
-	background: #FF2200;
+	background: #19C589;
 	
 }
 
 ul.gsd li:hover > ul
 {
 display:block;
--webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-ms-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
+-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 }
 
 ul.gsd > li:hover
@@ -209,20 +209,19 @@ display:block;
 
 ul.gsd li ul a:hover
 {
-color:#FFFFFF;
-background:#000000;
--webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-ms-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
+color:#19C589;
+background:#EFEFEF;
+-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 }
 
 ul.gsd a
 {
 color:#FFFFFF;
-background:#000000;
-border:1px solid #FFFFFF;
+background:#19C589;
 font-size:16px;
 font-weight:bold;
 text-decoration:none;
@@ -239,13 +238,13 @@ display:block;
 
 ul.gsd > li:hover > a
 {
-color:#FF2200;
-border-color:#FF2200;
--webkit-transition: all 1s ease-in-out;
-	-moz-transition: all 1s ease-in-out;
-	-ms-transition: all 1s ease-in-out;
-	-o-transition: all 1s ease-in-out;
-	transition: all 1s ease-in-out;
+color:#FFFFFF;
+border-color:#EFEFEF;
+-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 }
 
 ul.gsd
@@ -276,59 +275,6 @@ margin:0;
 ul.gsd li ul:hover {
 	color: #000000;
 }
-/*tooltip */
-.hint {
-  position: relative;
-  display: inline-block;
-  /**
-	 * tooltip arrow
-	 */
-  /**
-	 * tooltip body
-	 */ }
-  .hint:before, .hint:after {
-    position: absolute;
-    opacity: 0;
-    z-index: 1000000;
-    pointer-events: none;
-    -webkit-transition: 0.3s ease;
-    -moz-transition: 0.3s ease; }
-  .hint:hover:before, .hint:hover:after {
-    opacity: 1; }
-  .hint:before {
-    content: '';
-    position: absolute;
-    background: transparent;
-    border: 6px solid transparent;
-    z-index: 1000001; }
-  .hint:after {
-    content: attr(data-hint);
-    background: #33CC99;
-    color: white;
-    text-shadow: 0 -1px 0px black;
-    padding: 8px 10px;
-    font-size: 12px;
-    line-height: 12px;
-    white-space: nowrap;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); }
-.hint--right:before {
-	border-right-color: #33CC99;
-}
-/**
- * right tootip
- */
-.hint--right:before {
-  margin-left: -12px;
-  margin-bottom: -6px; }
-.hint--right:after {
-  margin-bottom: -14px; }
-.hint--right:before, .hint--right:after {
-  left: 100%;
-  bottom: 50%; }
-.hint--right:hover:before, .hint--right:hover:after {
-  -webkit-transform: translateX(8px);
-  -moz-transform: translateX(8px);
-  transform: translateX(8px); }
 
 /* animation */
 .animated {
@@ -337,11 +283,11 @@ ul.gsd li ul:hover {
 	-ms-animation-fill-mode: both;
 	-o-animation-fill-mode: both;
 	animation-fill-mode: both;
-	-webkit-animation-duration: 1s;
-	-moz-animation-duration: 1s;
-	-ms-animation-duration: 1s;
-	-o-animation-duration: 1s;
-	animation-duration: 1s;
+	-webkit-animation-duration: 0.4s;
+	-moz-animation-duration: 0.4s;
+	-ms-animation-duration: 0.4s;
+	-o-animation-duration: 0.4s;
+	animation-duration: 0.4s;
 }
 @-webkit-keyframes fadeIn {
 	0% {opacity: 0;}	
