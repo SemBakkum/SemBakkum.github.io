@@ -64,16 +64,22 @@
 			});
 		},
 
-		shakeStart: function(){
+		shake: function(){
 			var myShakeEvent = new Shake({
 				    threshold: 15, // optional shake strength threshold
 				    timeout: 1000 // optional, determines the frequency of event generation
-				});
-		},
+				})
 
-		shakeGo: function(){
-			routie(window.location.hash.split('#')[0])
-			weatherDisplay.style.display = 'none';
+			myShakeEvent.start();
+
+			window.addEventListener('shake', shakeEventDidOccur, false);
+
+			//function to call when shake occurs
+			function shakeEventDidOccur () {
+
+			    //put your own code here etc.
+			    alert('shake!');
+			}
 		}
 	}
 
@@ -106,12 +112,7 @@
                     console.table(filteredData);
 
                 gestures.left();
-
-				gestures.shakeStart();
-
-				window.addEventListener('shake', gestures.shakeGo, false);
-
-				gestures.shakeGo();
+                gestures.shake();
 
 				//function to call when shake occurs
 
@@ -166,11 +167,7 @@
 
 				gestures.right();
 
-				gestures.shakeStart();
-
-				window.addEventListener('shake', gestures.shakeGo, false);
-
-				gestures.shakeGo();
+				gestures.shake();
 
 				var weatherOverview = [];
 
