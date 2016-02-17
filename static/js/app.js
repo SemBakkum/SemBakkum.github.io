@@ -62,6 +62,21 @@
 					console.log(window.location.hash);
 					routie( window.location.hash + '/overview')
 				})
+
+				var myShakeEvent = new Shake({
+				    threshold: 15, // optional shake strength threshold
+				    timeout: 1000 // optional, determines the frequency of event generation
+				});
+
+				myShakeEvent.start();
+
+				window.addEventListener('shake', shakeEventDidOccur, false);
+
+				//function to call when shake occurs
+				function shakeEventDidOccur () {
+					routie(window.location.hash.split('#')[0])
+				}
+
 				
 				//Put data from filtered API in object.
 				var weatherData = {
