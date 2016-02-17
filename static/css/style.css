@@ -44,9 +44,13 @@ section{
 }
 
 .active{
-	display: block;
+	display: block !important;
 /*	-webkit-transform: translateX(0%);
     transform: translateX(0%);*/
+}
+
+#spinner{
+	display: none;
 }
 
 #home{

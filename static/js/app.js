@@ -14,69 +14,106 @@
 			routie({
 				//fallback if route doesn't exist. Credits to https://github.com/reauv/minor-web-app-from-scratch
 				'': function(){
-					sections.toggle('home');
+					switcher.toggle('home');
 				},
 				//Goes to which city is displayed in the URL.
 				':city': function(city){
-					sections.toggle('current');
-					routes.current(city);
+					switcher.toggle('current');
+					sections.current(city);
 				},
 				//Goes to which city/overview is displayed in de URL
 				':city/overview': function(city) {
-					sections.toggle('overview');
-					routes.overview(city);
+					switcher.toggle('overview');
+					sections.overview(city);
 				}
 			});
 		}
 	};
 
-	var routes = {
+	var loading = {
+
+		start: function(){
+			document.getElementById('spinner').classList.add('active');
+		},
+
+		stop: function(){
+			document.getElementById('spinner').classList.remove('active');
+		}
+	};
+
+	var gestures = {
+
+		left: function(){
+			var mc = new Hammer(current);
+
+			mc.on ("swipeleft", function(ev){
+				console.log('swipeleft');
+				console.log(window.location.hash);
+				routie( window.location.hash + '/overview')
+			});
+		},
+
+		right: function(){
+			var mc = new Hammer(overviewDisplay);
+
+			mc.on ("swiperight", function(ev){
+				console.log('swiperight');
+				routie( window.location.hash.split('/')[0]);
+				console.log(routie);
+				overviewDisplay.style.display = 'none';
+			});
+		},
+
+		shakeStart: function(){
+			var myShakeEvent = new Shake({
+				    threshold: 15, // optional shake strength threshold
+				    timeout: 1000 // optional, determines the frequency of event generation
+				});
+		},
+
+		shakeGo: function(){
+			routie(window.location.hash.split('#')[0])
+			weatherDisplay.style.display = 'none';
+		}
+	}
+
+	var request = {
+		currentData: function(city, cb) {
+			microAjax('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', cb)
+		},
+
+		forecastData: function(city, cb) {
+			microAjax('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&units=metric&cnt=7&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', cb)
+		}
+	};
+
+	var sections = {
 
 		current: function(city) {
-			//Console.log() the city that is selected.
-			console.log(city);
 
 			document.addEventListener("touchstart", function(){}, true);
 
-
-			weatherDisplay.style.display = 'none';
-			document.getElementById('spinner').style.display = 'block';
+			loading.start();
 			//Loads in the data from the API via microAjax.
-			microAjax('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
-				document.getElementById('spinner').style.display = 'none';
-				weatherDisplay.style.display = 'block';
+			request.currentData(city, function(data) {
+				loading.stop();
 				//Parses the data to a JSON format.
 				var data = JSON.parse(data);
                    	
                    	//Filters the data so I only get what I need.	
-                    var filteredData = _.pick(data, 'name', 'main', 'weather', 'sys', 'dt', 'wind');
+                var filteredData = _.pick(data, 'name', 'main', 'weather', 'sys', 'dt', 'wind');
 
                     console.table(filteredData);
 
-                    
+                gestures.left();
 
-                    var mc = new Hammer(current);
+				gestures.shakeStart.start();
 
-				mc.on ("swipeleft", function(ev){
-					console.log('swipeleft');
-					console.log(window.location.hash);
-					routie( window.location.hash + '/overview')
-				})
+				window.addEventListener('shake', shakeGo, false);
 
-				var myShakeEvent = new Shake({
-				    threshold: 15, // optional shake strength threshold
-				    timeout: 1000 // optional, determines the frequency of event generation
-				});
-
-				myShakeEvent.start();
-
-				window.addEventListener('shake', shakeEventDidOccur, false);
+				gestures.shakeGo();
 
 				//function to call when shake occurs
-				function shakeEventDidOccur () {
-					routie(window.location.hash.split('#')[0])
-					weatherDisplay.style.display = 'none';
-				}
 
 				
 				//Put data from filtered API in object.
@@ -118,34 +155,18 @@
 
 			document.addEventListener("touchstart", function(){}, true);
 
-
-			weatherDisplay.style.display = 'none';
-			overviewDisplay.style.display = 'none';
-			document.getElementById('spinner').style.display = 'block';
-			microAjax('http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&units=metric&cnt=7&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', function(data){
-				document.getElementById('spinner').style.display = 'none';
-				overviewDisplay.style.display = 'block';
+			loading.start();
+			request.forecastData(city, function(data){
+				loading.stop();
 				var data = JSON.parse(data);
 				var filteredData2 = _.pick(data, 'list');
 
                 console.log(filteredData2);
 				console.log(data);
 
-				var mc = new Hammer(overviewDisplay);
+				gestures.right();
 
-				mc.on ("swiperight", function(ev){
-					console.log('swiperight');
-					routie( window.location.hash.split('/')[0]);
-					console.log(routie);
-					overviewDisplay.style.display = 'none';
-				})
-
-				var myShakeEvent = new Shake({
-				    threshold: 15, // optional shake strength threshold
-				    timeout: 1000 // optional, determines the frequency of event generation
-				});
-
-				myShakeEvent.start();
+				.start();
 
 				window.addEventListener('shake', shakeEventDidOccur, false);
 
@@ -181,7 +202,7 @@
 		}
 	};
 
-	var sections = {
+	var switcher = {
 		toggle: function(route){
 
 			var allSections = document.querySelectorAll('section');
