@@ -119,7 +119,9 @@
 
 				mc.on ("swiperight", function(ev){
 					console.log('swiperight');
-					routie( window.location.hash );
+					routie( window.location.hash.split('/')[0]);
+					console.log(routie);
+					overviewDisplay.style.display = 'none';
 				})
 
 				var weatherOverview = [];
