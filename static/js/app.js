@@ -7,6 +7,13 @@
 	var overviewDisplay = document.getElementById('overview');
 
 	var app = {
+		init: function(){
+			routes.init();
+		}
+	};
+
+
+	var routes = {
 		init: function() { 
 
 			routie({
