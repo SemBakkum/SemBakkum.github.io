@@ -6,8 +6,6 @@
 	var weatherDisplay = document.getElementById('current');
 	var overviewDisplay = document.getElementById('overview');
 
-	document.addEventListener("touchstart", function(){}, true);
-
 	var app = {
 		init: function() { 
 
@@ -33,20 +31,25 @@
 	var loading = {
 
 		start: function(){
-			document.getElementById('spinner').classList.add('active');
+			document.getElementById('spinner').classList.add('activated');
 		},
 
 		stop: function(){
-			document.getElementById('spinner').classList.remove('active');
+			document.getElementById('spinner').classList.remove('activated');
 		}
 	};
 
 	var gestures = {
 
 		left: function(){
-			var mc = new Hammer(current);
+			var options = {
+			  dragLockToAxis: true,
+			  dragBlockHorizontal: true
+			};
 
-			mc.on ("swipeleft", function(ev){
+			var mc = new Hammer(current, options);
+
+			mc.on ("dragleft swipeleft", function(ev){
 				console.log('swipeleft');
 				console.log(window.location.hash);
 				routie( window.location.hash + '/overview')
@@ -66,8 +69,8 @@
 
 		shake: function(){
 			var myShakeEvent = new Shake({
-				    threshold: 15, // optional shake strength threshold
-				    timeout: 1000 // optional, determines the frequency of event generation
+				    threshold: 15,
+				    timeout: 1000
 				})
 
 			myShakeEvent.start();
@@ -77,9 +80,9 @@
 			//function to call when shake occurs
 			function shakeEventDidOccur () {
 				window.location = 'app.html'
-			}
+			};
 		}
-	}
+	};
 
 	var request = {
 		currentData: function(city, cb) {
@@ -95,25 +98,21 @@
 
 		current: function(city) {
 
-			document.addEventListener("touchstart", function(){}, true);
-
 			loading.start();
-			//Loads in the data from the API via microAjax.
+
 			request.currentData(city, function(data) {
+
 				loading.stop();
+
 				//Parses the data to a JSON format.
 				var data = JSON.parse(data);
                    	
-                   	//Filters the data so I only get what I need.	
+                //Filters the data so I only get what I need.	
                 var filteredData = _.pick(data, 'name', 'main', 'weather', 'sys', 'dt', 'wind');
 
-                    console.table(filteredData);
-
                 gestures.left();
+
                 gestures.shake();
-
-				//function to call when shake occurs
-
 				
 				//Put data from filtered API in object.
 				var weatherData = {
@@ -126,9 +125,7 @@
 					sunDown: helpers.calculateDatetime(filteredData.sys.sunset, true),
 					gotData: helpers.calculateDatetime(filteredData.dt, true),
 					windSpeed: filteredData.wind.speed
-				}
-
-				console.log(weatherData)			
+				}		
 
 				//Add links to section for forecast.
 				var directives = {
@@ -152,16 +149,15 @@
 
 		overview: function(city) {
 
-			document.addEventListener("touchstart", function(){}, true);
-
 			loading.start();
-			request.forecastData(city, function(data){
-				loading.stop();
-				var data = JSON.parse(data);
-				var filteredData2 = _.pick(data, 'list');
 
-                console.log(filteredData2);
-				console.log(data);
+			request.forecastData(city, function(data){
+
+				loading.stop();
+
+				var data = JSON.parse(data);
+
+				var filteredData2 = _.pick(data, 'list');
 
 				gestures.right();
 
@@ -178,8 +174,6 @@
 					})
 				}
 
-				console.table(weatherOverview);
-
 				var directives = {
 					icons: {
 						src: function() {
@@ -194,9 +188,11 @@
 	};
 
 	var switcher = {
+
 		toggle: function(route){
 
 			var allSections = document.querySelectorAll('section');
+
 			var toggleSection = document.getElementById(route);
 
 			console.log(toggleSection);

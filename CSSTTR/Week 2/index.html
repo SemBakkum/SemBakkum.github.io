@@ -55,11 +55,11 @@
 							</a>
 						</li>
 						<li><a href="#target">Target</a></li>
-						<li><a href="#">Another list item</a></li>
-						<li><a href="#">Another list item</a></li>
-						<li><a href="#">Another list item</a></li>
-						<li><a href="#">Another list item</a></li>
-						<li><a href="#">Another list item</a></li>
+						<li><a disabled href="#">Another list item</a></li>
+						<li><a disabled href="#">Another list item</a></li>
+						<li><a disabled href="#">Another list item</a></li>
+						<li><a disabled href="#">Another list item</a></li>
+						<li><a disabled href="#">Another list item</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -143,17 +143,16 @@
 							<legend>Change your password:</legend>
 							<label>
 								<input id="current-password" type="password" required placeholder="Current password">
-								<span>Current password</span>
 							</label>
 
 							<label>
 								<input id="current-password" type="password" required placeholder="New password">
-								<span>New password</span>
+								<span class="callout">Must contain upper and lower-case, numerical digits and special characters like @, # or $.</span>
 							</label>
 
 							<label>
 								<input id="current-password" type="password" required placeholder="Verify new password">
-								<span>Verify new password</span>
+								<span class="callout">Must contain upper and lower-case, numerical digits and special characters like @, # or $.</span>
 							</label>
 
 							<button role="button" type="submit">Yep, change it!</button>

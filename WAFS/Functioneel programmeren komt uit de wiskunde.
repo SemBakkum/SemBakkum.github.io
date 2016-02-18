@@ -1,0 +1,18 @@
+Functioneel programmeren komt uit de wiskunde.
+Daar zijn 2 mensen bij betrokken en dat heet labdar calculus, een labdar functie is een functie met een naam.
+callback is een functie zonder naam. 
+
+Een functie is puur als hij geen side effects heeft buiten die functie zelf(dus buiten de functie niks aanroept.).
+
+check haskall curry een keer. 
+
+Java is een object oriented taal.
+
+Een hogere orde functie is een functie die een functie genereerd. 
+
+
+//College REACT en REDUCS 
+
+react is een templating engine. 
+
+
