@@ -365,6 +365,40 @@ input:not(:focus) + .callout:not(:hover) {
 	transform: rotate(45deg);
 }
 
+input[type="checkbox"] + label::before {
+	content: '\a0';
+	font-size: 1.4em;
+	display: inline-block;
+	vertical-align: 0.2em;
+	width: 1em;
+	height: 1em;
+	margin-right: 0.2em;
+	border-radius: 0.2em;
+	background: silver;
+	text-indent: 0.15em;
+	line-height: 1;
+}
+
+input[type="checkbox"]:checked + label::before {
+	content: '\2713';
+	background: #00EAA4;
+}
+
+input[type="checkbox"] {
+	position: absolute;
+	clip: rect(0,0,0,0);
+}
+
+input[type="checkbox"]:focus + label::before{
+	box-shadow: 0 0 0.1em 0.1em #58a;
+}
+
+input[type="checkbox"]:disabled + label::before{
+	background: gray;
+	box-shadow: none;
+	color: white;
+}
+
 /*--------------------------------------------------------------
 BUTTON DESIGN
 --------------------------------------------------------------*/

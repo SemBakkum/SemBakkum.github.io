@@ -1,8 +1,8 @@
 var launcher = (function(){
 
 	var init = function(){
+		document.addEventListener("touchstart", function(){}, true);
 		routes.init();
-		// switcher.toggle(route);
 	}
 
 	return {
