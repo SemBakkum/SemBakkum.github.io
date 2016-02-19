@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Wheater app</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="static/css/style.css">
+		<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+
+		<script type="text/javascript">
+			document.addEventListener("touchstart", function(){}, true);
+		</script>
+
+		<!-- De header, met een navigatie -->
+
+		<header>
+			<nav class=" animated fadeIn">
+				<ul class=" gsd animated fadeInLeft">
+					<li>
+						<a style="font-weight:900; font-size:xx-large">&#9776;</a>
+						<ul class="animated fadeInLeft">
+							<li class="animated fadeIn"><a href='app.html'>Home</a></li>
+							<li><a href='#Amsterdam'>Amsterdam</a></li>
+							<li><a href='#Zaandam'>Zaandam</a></li>
+							<li><a href='#Zaanstad'>Zaanstad</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- De main content begint hier -->
+		<main>
+			<section class="section" id="home">
+
+				<?xml version="1.0" encoding="utf-8"?>
+				<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+				<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="-383 803 512 512" style="enable-background:new -383 803 512 512;" xml:space="preserve">
+				<style type="text/css">
+					.st0{fill:#19C589;}
+				</style>
+				<g>
+					<g id="Cloud__x2B__Sun">
+						<g>
+							<path class="st0" d="M57.8,1090.8c-9.2-67.9-53.7-117.5-124.2-117.5c-59,0-91.7,34.7-111.8,88.7c-7.4-1.8-14.9-2.6-22.5-2.6
+								c-52.7,0-95.5,44.8-95.5,96.3c0,49.2,41.2,88.2,91.9,91.2H48.5c43.9,0,80.5-36.9,80.5-79.8C129,1127.3,97.9,1094.9,57.8,1090.8z
+								 M48.5,1224h-252.8c-36.6-2.1-69-32.6-69-68.4c0-37.4,34.2-70.8,72.5-70.8c9,0,17.8,1.7,26.2,5l13.9,5.5l3.7-14.1
+								c13-49.3,38.6-85.1,90.6-85.1c61.1,0,96.5,48.2,99.2,107.9l0.6,13l15.8-1.1c29.5,0,56.7,22.4,56.7,51.2
+								C106,1195.9,78.1,1224,48.5,1224z M-198.3,956c20,0,38.5,5.9,54.2,15.8c6.8-5,14.2-9.2,22.2-12.5c-21.2-16.3-47.7-26.1-76.5-26.1
+								c-68.9,0-125,55.6-125,124c0,17.9,3.9,34.9,10.9,50.4c3.8-9.5,9.1-18.2,15.4-26.1c-2-7.8-3.3-15.8-3.3-24.2
+								C-300.3,1001.4-254.5,956-198.3,956z M-197.3,909.6c6.4,0,12.7,0.6,18.8,1.5h1.3l-20.1-39.9l-20.2,39.9h1.3
+								C-210,910.2-203.8,909.6-197.3,909.6z M-342.8,1077.1v-1.3c-0.9-6.1-1.5-12.3-1.5-18.7c0-6.4,0.6-12.6,1.5-18.7v-1.3l-40.2,20
+								L-342.8,1077.1z M-319.3,974.6c3.7-5,7.7-9.8,12.2-14.3c4.5-4.5,9.4-8.4,14.4-12.2l0.9-0.9l-42.7-14.1l14.2,42.3L-319.3,974.6z"
+								/>
+						</g>
+					</g>
+				</g>
+				</svg>
+
+				<div id="title"><h1>Your <span class="Fcolor">Fucking</span> Weather</h1></div>
+				<input id="search" placeholder="Your fucking city...">
+			
+			</section>
+
+			<div id="spinner" class=""></div>
+
+			<section class="section" id="current">
+				<h1><span data-bind="city"></span>, <span data-bind="country"></span></h1>
+				<p><img data-bind="icon" src="" alt=""><strong><span data-bind="temp"></span>&#x2103</strong></p>
+				<p id="type">Description: <span id="typeW" data-bind="weatherType"></span></p>
+				<p><img src="images/svg/sunup.svg" class="sun"><span id="sunUp"></span></p>
+				<p><img src="images/svg/sundown.svg" class="sun"><span id="sunDown"></span></p>
+				<p><img src="images/svg/wind.svg" class="sun"><span data-bind="windSpeed"></span>m/s</p>
+				<p id="forecast"><a data-bind="link" role="button">Forecast</a></p>
+			</section>
+
+			<section class="section" id="overview">
+				<article>
+					<span data-bind="day"></span>
+					<p><span data-bind="temp"></span>&#x2103</p>
+					<img data-bind="icons" />
+				</article>
+			</section>
+		</main>
+		<footer>
+		</footer>
+	</body>
+	<script type="text/javascript" src="static/js/underscore.js"></script>
+	<script type="text/javascript" src="static/js/shake.js"></script>
+	<script type="text/javascript" src="static/js/spin.min.js"></script>
+	<script type="text/javascript" src="https://hammerjs.github.io/dist/hammer.js"></script>
+	<script type="text/javascript" src="static/js/microajax.minified.js"></script>
+	<script type="text/javascript" src="static/js/routie.js"></script>
+	<script type="text/javascript" src="static/js/transparency.min.js"></script>
+	<script type="text/javascript" src="static/js/modules/helpers.js"></script>
+	<script type="text/javascript" src="static/js/modules/gestures.js"></script>
+	<script type="text/javascript" src="static/js/modules/request.js"></script>
+	<script type="text/javascript" src="static/js/modules/loader.js"></script>
+	<script type="text/javascript" src="static/js/modules/sections.js"></script>
+	<script type="text/javascript" src="static/js/modules/switcher.js"></script>
+	<script type="text/javascript" src="static/js/modules/routes.js"></script>
+	<script type="text/javascript" src="static/js/modules/launcher.js"></script>
+
+</html>
