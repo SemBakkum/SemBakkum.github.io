@@ -1,51 +1,54 @@
-var gestures = (function(){
+var gestures = {
 
-		var left = function(){
-			var options = {
-			  dragLockToAxis: true,
-			  dragBlockHorizontal: true
-			};
+	// Let op je indenting
+	// zo is het nog meer OOP
 
-			var mc = new Hammer(current, options);
+	left: function(){
+		var options = {
+		  dragLockToAxis: true,
+		  dragBlockHorizontal: true
+		};
 
-			mc.on ("dragleft swipeleft", function(ev){
-				console.log('swipeleft');
-				console.log(window.location.hash);
-				routie( window.location.hash + '/overview')
-			});
-		}
+		var mc = new Hammer(current, options);
 
-		var right = function(){
-			var mc = new Hammer(overviewDisplay);
+		mc.on ("dragleft swipeleft", function(ev){
+			console.log('swipeleft');
+			console.log(window.location.hash);
+			routie( window.location.hash + '/overview')
+		});
 
-			mc.on ("swiperight", function(ev){
-				console.log('swiperight');
-				routie( window.location.hash.split('/')[0]);
-				console.log(routie);
-				overviewDisplay.classList.remove('active')
-			});
-		}
+		return this;
+	};
 
-		 var shake = function(){
-			var myShakeEvent = new Shake({
-				    threshold: 15,
-				    timeout: 1000
-				})
+	right: function(){
+		var mc = new Hammer(overviewDisplay);
 
-			myShakeEvent.start();
+		mc.on ("swiperight", function(ev){
+			console.log('swiperight');
+			routie( window.location.hash.split('/')[0]);
+			console.log(routie);
+			overviewDisplay.classList.remove('active')
+		});
 
-			window.addEventListener('shake', shakeEventDidOccur, false);
+		return this;
+	};
 
-			//function to call when shake occurs
-			function shakeEventDidOccur () {
-				window.location = 'app.html'
-			};
-		}
+	shake: function(){
+		var myShakeEvent = new Shake({
+			    threshold: 15,
+			    timeout: 1000
+			})
 
-		return{
-			left: left,
-			right: right,
-			shake: shake
-		}
+		myShakeEvent.start();
 
-	}());
+		window.addEventListener('shake', shakeEventDidOccur, false);
+
+		//function to call when shake occurs
+		function shakeEventDidOccur () {
+			window.location = 'app.html'
+		};
+
+		return this;
+	}
+
+}());
