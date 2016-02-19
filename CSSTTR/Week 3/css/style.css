@@ -1,0 +1,579 @@
+/*--------------------------------------------------------------
+>>> ABOUT:
+----------------------------------------------------------------
+    Author:         SEM BAKKUM
+    Project:        CSS TO THE RESCUE
+    Version:        0.8
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENT:
+----------------------------------------------------------------
+# STRUCTURE
+	## GLOBAL SETTINGS
+	## TARGET
+    ## HEADER
+    ## MAIN
+    	## FILTER EFFECT
+    	## PASSWORD
+    	## BUTTON   	
+	## FOOTER
+# EXTRA CSS
+	## MEDIA QUERIES
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+GLOBAL SETTINGS
+--------------------------------------------------------------*/
+html {
+	font-size: 1em;
+}
+
+body {
+	font-family: 'Lato', Helvetica, Verdana, serif;
+	font-weight: 400;
+	line-height: 1.45;
+	color: #333;
+	margin: 0;
+	background: hsl(80, 84%, 90%);
+	background-image: 
+		linear-gradient(90deg, #264878 11px, transparent 0),
+		linear-gradient(90deg, #97A9C5 23px, transparent 0),
+		linear-gradient(90deg, #C7CDEC 23px, transparent 0);
+	background-size: 83px 100%, 61px 100%, 41px 100%;
+	}
+
+#overlay{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+}
+
+@font-face {
+    font-family: 'Ampersand';
+    src: local('Baskerville'), local('Palatino'), local('Book Antiqua');
+    unicode-range: U+26;
+}
+
+h1 {
+    font-family: Ampersand, Arial, sans-serif;
+}
+
+p {
+	margin-bottom: 1.3em;
+}
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #264878;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 2.441em;
+}
+
+h2 {
+	font-size: 1.953em;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 1.563em;
+	font-weight: 200;
+	border-bottom: 0.05em solid rgba(46,82,139, 0.5);
+	width: 100%;
+}
+
+h4 {
+	font-size: 1.25em;
+}
+
+li{
+	list-style-type: none;
+}
+
+a{
+	text-decoration: none;
+	color: white;
+}
+
+svg{
+	width: 1.2em;
+	height: 1.2em;
+	fill: #A9696B;
+	margin-right: 0.7em;
+}
+
+img{
+	width: 100%;
+}
+
+em{
+	font-weight: 800;
+}
+
+figcaption{
+	font-weight: 800;
+	color: #264878;
+}
+
+/*--------------------------------------------------------------
+TARGET SETTINGS
+--------------------------------------------------------------*/
+#target{
+    display: none;
+    width: 50%;
+    height: auto;    
+}
+
+#target:target{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;    
+    display: flex;  
+    position: fixed;   
+    top: 25%;
+    left: 25%; 
+    margin: 0;
+    z-index: 99;
+}
+
+#target > figure {
+    max-width: 30em;
+    max-width: -webkit-min-content;
+    max-width: -moz-min-content;
+    max-width: min-content;
+	margin: auto;
+	border: solid 0.1em #ddd;    
+	padding: 1em;
+}
+
+#target > figure > img { 
+    max-width: inherit;
+}
+
+#target:target + #overlay{
+	-webkit-filter: blur(3px);
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="3" /></filter></svg>#filter');
+	-webkit-filter: blur(3px);
+	        filter: blur(3px);
+}
+
+/*--------------------------------------------------------------
+HEADER SETTINGS
+--------------------------------------------------------------*/
+#overlay > header:first-of-type{
+	background-color: #2E528B;
+	width: 100%;
+	height: 40em;
+	text-align: center;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+#overlay > header > h1{
+	color: white;
+	margin: 0.2em;
+}
+
+header > figure > img{
+	width: 10em;
+	height: 10em;
+	border-radius: 6em;
+	border: 0.5em solid rgb(105,131,172);
+}
+
+#overlay > header > p{
+	color: white;
+}
+
+header > nav > ul > li{
+	padding: 1em;
+}
+
+nav:first-of-type{
+	text-align: left;
+}
+
+:disabled, [disabled], [aria-disabled="true"] {
+	cursor: not-allowed;
+}
+
+/*--------------------------------------------------------------
+MAIN CONTENT SETTINGS
+--------------------------------------------------------------*/
+main{
+	min-height: 100vh;
+	margin: 0.5em;
+	max-width: 100vw;
+}
+
+article{
+	margin: auto;
+	background-color: white;
+	border-top: 0.5em solid rgba(46,82,139,0.5);
+	margin-top: 1em;
+	padding: 1em;
+}
+
+article:hover{
+	border-top: 0.5em solid #00EAA4;
+}
+
+/*--------------------------------------------------------------
+FILTER EFFECT SETTINGS
+--------------------------------------------------------------*/
+.filter-effects{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-justify-content: space-around;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
+}
+
+.filter-effects > figure > figcaption{
+	text-align: center;
+}
+
+.filter-effects > figure > img:first-child:nth-last-child(-n+4),
+.filter-effects > figure > img:first-child:nth-last-child(-n+4) ~ img {
+	border-radius: 10em;
+	width: 6em;
+	height: 6em;
+}
+
+.effect-01{
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.393 0.769 0.189 0 0 0.349 0.686 0.168 0 0 0.272 0.534 0.131 0 0 0 0 0 1 0" /></filter></svg>#filter');
+	-webkit-filter: sepia(1);
+	        filter: sepia(1);
+}
+
+.effect-02{
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" /></filter></svg>#filter');
+	-webkit-filter: grayscale(1);
+	        filter: grayscale(1);
+}
+
+.effect-03{
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="matrix" color-interpolation-filters="sRGB" values="0.6852 0.286 0.0288 0 0 0.0852 0.8919999999999999 0.0288 0 0 0.0852 0.286 0.6287999999999999 0 0 0 0 0 1 0" /></filter></svg>#filter');
+	-webkit-filter: saturate(60%);
+	        filter: saturate(60%);
+}
+
+.effect-04{
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="1.8" intercept="-0.4" /><feFuncG type="linear" slope="1.8" intercept="-0.4" /><feFuncB type="linear" slope="1.8" intercept="-0.4" /></feComponentTransfer></filter></svg>#filter');
+	-webkit-filter: contrast(180%);
+	        filter: contrast(180%);
+}
+
+.effect-05{
+	filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feColorMatrix type="hueRotate" color-interpolation-filters="sRGB" values="90" /></filter></svg>#filter');
+	-webkit-filter: hue-rotate(90deg);
+	        filter: hue-rotate(90deg);
+}
+
+/*--------------------------------------------------------------
+PASSWORD SETTINGS
+--------------------------------------------------------------*/
+
+fieldset{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	border: none;
+}
+
+legend{
+	margin-bottom: 1em;
+}
+
+input{
+	border: none;
+	border-bottom: 0.2em solid rgba(46,82,139,0.5);
+	font-size: 1em;
+	margin-bottom: 1em;
+}
+
+@keyframes elastic-grow {
+    from { transform: scale(0); }
+    70% {
+        transform: scale(1.1);
+        animation-timing-function:
+            cubic-bezier(.1,.25,1,.25);
+		}
+}
+
+input:not(:focus) + .callout { transform: scale(0); }
+
+input:focus + .callout { animation: elastic-grow .5s; }
+
+input:not(:focus) + .callout:not(:hover) {
+	transform: scale(0);
+	transition: .25s transform;
+}
+
+.callout {
+	transition: .5s cubic-bezier(.25,.1,.3,1.5) transform;
+	transform-origin: 1.4em -.4em;
+}
+
+.callout {	
+	position: absolute;
+	max-width: 14em;
+	padding: .6em .8em;
+	border-radius: .3em;
+	margin: .3em 0 0 -.2em;
+	background: #fed;
+	border: 1px solid rgba(0,0,0,.3);
+	box-shadow: .05em .2em .6em rgba(0,0,0,.2);
+	font-size: 75%;
+}
+
+.callout:before {
+	content: "";
+	position: absolute;
+	top: -.4em;
+	left: 1em;
+	padding: .35em;
+	background: inherit;
+	border: inherit;
+	border-right: 0;
+	border-bottom: 0;
+	transform: rotate(45deg);
+}
+
+input[type="checkbox"] + label::before {
+	content: '\a0';
+	font-size: 1.4em;
+	display: inline-block;
+	vertical-align: 0.2em;
+	width: 1em;
+	height: 1em;
+	margin-right: 0.2em;
+	border-radius: 0.2em;
+	background: silver;
+	text-indent: 0.15em;
+	line-height: 1;
+}
+
+input[type="checkbox"]:checked + label::before {
+	content: '\2713';
+	background: #00EAA4;
+}
+
+input[type="checkbox"] {
+	position: absolute;
+	clip: rect(0,0,0,0);
+}
+
+input[type="checkbox"]:focus + label::before{
+	box-shadow: 0 0 0.1em 0.1em #58a;
+}
+
+input[type="checkbox"]:disabled + label::before{
+	background: gray;
+	box-shadow: none;
+	color: white;
+}
+
+/*--------------------------------------------------------------
+BUTTON DESIGN
+--------------------------------------------------------------*/
+[role="button"]{
+	background-color: #00EAA4;
+	border: none;
+	padding: 1em 2em;
+	color: #264878;
+	font-size: 1em;
+	font-weight: 800;
+	border-radius: 1em;
+	margin-top: 1em;
+}
+
+[role="button"]:hover{
+	cursor: pointer;
+	background-color: #264878;
+	color: white;
+}
+
+[role="button"]:focus{
+	cursor: pointer;
+	background-color: #264878;
+	color: white;
+}
+
+[role="button"]::before{
+	content: '';
+	position: absolute;
+	top: -50px;
+	left: -50px;
+	right: -50px;
+	bottom: -50px;
+}
+
+/*--------------------------------------------------------------
+LOADER DESIGN
+--------------------------------------------------------------*/
+
+@keyframes loader { 
+	to {
+		background-position: -1600px 0;
+	}
+}
+
+.loader {
+	width: 100px;
+	height: 100px;
+	background: url('loader.png') 0 0;
+	-webkit-animation: loader 1s infinite steps(16);
+       -moz-animation: loader 1s infinite steps(16);
+        -ms-animation: loader 1s infinite steps(16);
+         -o-animation: loader 1s infinite steps(16);
+	animation: loader 1s infinite steps(16);
+	text-indent: 200%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/*--------------------------------------------------------------
+FOOTER SETTINGS
+--------------------------------------------------------------*/
+footer{
+	background-color: #2E528B;
+	width: 100%;
+	height: auto;
+}
+
+nav:last-of-type{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin: auto;
+}
+
+address{
+	margin-left: -19em;
+	color: white;
+}
+
+/*--------------------------------------------------------------
+SETTINGS FOR SCREENS STARTING AT 640PX AND BIGGER
+--------------------------------------------------------------*/
+@media screen and (min-width: 40em) {
+
+    /*--------------------------------------------------------------
+	ADJUST OVERLAY SETTINGS
+	--------------------------------------------------------------*/
+    #overlay {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+    }
+
+    /*--------------------------------------------------------------
+	ADJUST HEADER SETTINGS
+	--------------------------------------------------------------*/
+    #overlay > header:first-of-type{
+    	width: 30%;
+    }
+
+    /*--------------------------------------------------------------
+	ADJUST MAIN SETTINGS
+	--------------------------------------------------------------*/
+    main{
+    	display: -webkit-box;
+    	display: -webkit-flex;
+    	display: -ms-flexbox;
+    	display: flex;
+    	-webkit-box-orient: vertical;
+    	-webkit-box-direction: normal;
+    	-webkit-flex-direction: column;
+    	    -ms-flex-direction: column;
+    	        flex-direction: column;
+    	width: 67.8%;
+    }
+
+    /*--------------------------------------------------------------
+	ADJUST ARTICLE SETTINGS
+	--------------------------------------------------------------*/
+    article{
+    	margin: 1em;
+    }
+
+    /*--------------------------------------------------------------
+	ADJUST PASSWORD SETTINGS
+	--------------------------------------------------------------*/
+    #password{
+    	width: 15em;
+    }
+
+    /*--------------------------------------------------------------
+	ADJUST PHOTO-ALBUM SETTINGS
+	--------------------------------------------------------------*/
+	#photo-albums{
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		    -ms-flex-wrap: wrap;
+		        flex-wrap: wrap;
+		-webkit-justify-content: space-around;
+		    -ms-flex-pack: distribute;
+		        justify-content: space-around;
+	}
+
+	#photo-albums > header{
+		-webkit-flex-basis: 100%;
+		    -ms-flex-preferred-size: 100%;
+		        flex-basis: 100%;
+	}
+
+	#photo-albums > figure { 
+	-webkit-flex-basis: 40%; 
+	    -ms-flex-preferred-size: 40%; 
+	        flex-basis: 40%;
+	margin: 0;
+	}
+
+	#photo-albums > figure > img {
+	width: 100%;
+	}
+
+    /*--------------------------------------------------------------
+	ADJUST FOOTER SETTINGS
+	--------------------------------------------------------------*/
+	address{
+		margin-left: 0;
+	}
+}
+
