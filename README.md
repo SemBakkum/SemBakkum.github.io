@@ -14,6 +14,11 @@
 <h2>Code</h2>
 <a href="https://github.com/SemBakkum/SemBakkum.github.io/tree/master/CSSTTR/Week%202" target="_blank">Code live versie</a>
 
+<h1>Opdracht 3</h1>
+<h2>Live versie</h2>
+<a href="https://oege.ie.hva.nl/~bakkums002/rescue/" target="_blank"> Profile of Mona Krajeck</a>
+<h2>Code</h2>
+<a href="https://github.com/SemBakkum/SemBakkum.github.io/tree/master/CSSTTR/Week%203" target="_blank">Code live versie</a>
 
 # WAFS
 <h1>Opdracht 2 Voor-en nadelen JavaScript libraries/frameworks</h1>
