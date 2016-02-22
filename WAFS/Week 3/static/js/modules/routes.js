@@ -18,7 +18,7 @@ var routes = (function() {
 					sections.overview(city);
 				}
 			})
-		}
+		};
 
 		return {
 			init: init

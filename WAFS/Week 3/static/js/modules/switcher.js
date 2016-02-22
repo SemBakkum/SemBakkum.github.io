@@ -14,7 +14,7 @@
 
 			toggleSection.classList.toggle('active');
 
-		}
+		};
 
 		return {
 			toggle: toggle

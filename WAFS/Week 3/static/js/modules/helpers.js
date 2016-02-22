@@ -12,11 +12,11 @@ var helpers = (function(){
 		} else {
 			return dag[date.getDay()] + ' ' + date.getDate() + ' ' + maanden[date.getMonth()];
 		}
-	}
+	};
 
 	var getIcon = function(icon) {
 		return 'http://openweathermap.org/img/w/' +icon+ '.png';
-	}
+	};
 
 	return {
 		calculateDatetime: calculateDatetime,
