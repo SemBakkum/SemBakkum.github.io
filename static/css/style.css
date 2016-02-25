@@ -285,7 +285,7 @@ LOADER SETTINGS
 .activated > h3{
 	color: white;
 	margin-top: -3em;
-	z-index: 2;
+	z-index: 5;
 }
 
 .activated > #spinner{
