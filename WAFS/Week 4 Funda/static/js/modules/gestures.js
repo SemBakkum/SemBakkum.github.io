@@ -17,4 +17,8 @@ var gestures = (function(){
 			};
 		}
 
+		return{
+			shake: shake
+		}
+
 }())
