@@ -113,7 +113,7 @@ header{
 	background-color: #F8B000;
 	border-bottom: .2em solid #83CFEE;
 	position: fixed;
-	z-index: 3;
+	z-index: 2;
 }
 
 
@@ -213,7 +213,7 @@ section > div:first-of-type{
 	color: white;
 	margin: 0;
 	position: absolute;
-	z-index: 2;
+	z-index: 3;
 	margin-top: -4.5em;
 	left: 0;
 }
