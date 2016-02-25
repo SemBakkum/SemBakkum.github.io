@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Funda</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="static/css/flaticon.css">
+		<link rel="stylesheet" type="text/css" href="static/css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<!-- De header, met een navigatie -->
+		<header>
+			<nav>
+				<ul>
+					<li><a href="#"><img src="static/images/funda-logo.svg" id="logo"></a></li>
+					<li><a href="#results"><img src="static/images/results.svg"></a></li>
+					<li><a href="#likes"><img src="static/images/likes.svg"></a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<section id="loader">
+
+			<div id="spinner" class="">
+			</div>
+			<h3>Woningen laden...</h3>
+			
+		</section>
+		<!-- De main content begint hier -->
+		<main>
+
+			<section class="section" id="home">
+
+				<div id="select">
+					<h1>Type woning</h1>
+					<select id="selected">
+					    <option value="koop">Koop</option>
+					    <option value="huur">Huur</option>
+					</select>
+
+				</div>
+
+				<div id="search">
+					<a href="#results" data-bind="link" role="button">Zoeken</a>
+				</div>
+
+
+			</section>
+
+			<section class="section" id="overview">
+				<div>
+					<a class="flaticon-shapes like" data-bind="Liked"></a>
+					<img data-bind="FotoLargest" class="picture">
+					<div id="overlay">
+						<a data-bind="route"><img src="static/images/map-location.svg">   <span data-bind="Adres"></span></a>	<br />
+						<span data-bind="Woonplaats"></span>	
+						<span data-bind="PrijsGeformatteerdHtml"></span>
+					</div>	
+				</div>
+			</section>
+
+			<section class="section" id="likes">
+
+				<div>
+					<img data-bind="FotoLargest" class="picture">
+					<div id="overlay">
+						<a data-bind="route"><img src="static/images/map-location.svg">   <span data-bind="Adres"></span></a>	<br />
+						<span data-bind="Woonplaats"></span>	
+						<span data-bind="PrijsGeformatteerdHtml"></span>
+					</div>
+				</div>
+
+
+			</section>
+
+		</main>
+		<footer>
+
+		</footer>
+	</body>
+	<script type="text/javascript" src="static/js/libs/underscore.js"></script>
+	<script type="text/javascript" src="static/js/libs/transparency.min.js"></script>
+	<script type="text/javascript" src="static/js/libs/microajax.minified.js"></script>
+	<script type="text/javascript" src="static/js/libs/shake.js"></script>
+	<script type="text/javascript" src="static/js/libs/routie.js"></script>	
+	<script type="text/javascript" src="static/js/modules/retrieve.js"></script>
+	<script type="text/javascript" src="static/js/modules/loader.js"></script>
+	<script type="text/javascript" src="static/js/modules/gestures.js"></script>
+	<script type="text/javascript" src="static/js/modules/sections.js"></script>
+	<script type="text/javascript" src="static/js/modules/routes.js"></script>
+	<script type="text/javascript" src="static/js/modules/view.js"></script>
+	<script type="text/javascript" src="static/js/modules/launcher.js"></script>
+</html>

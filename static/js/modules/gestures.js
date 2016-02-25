@@ -11,18 +11,17 @@ var gestures = (function(){
 			mc.on ("dragleft swipeleft", function(ev){
 				console.log('swipeleft');
 				console.log(window.location.hash);
-				routie( window.location.hash + '/overview')
+				routie( window.location.hash + '/forecast')
 			});
 		}
 
 		var right = function(){
-			var mc = new Hammer(overviewDisplay);
+			var mc = new Hammer(forecast);
 
 			mc.on ("swiperight", function(ev){
 				console.log('swiperight');
 				routie( window.location.hash.split('/')[0]);
 				console.log(routie);
-				overviewDisplay.classList.remove('active')
 			});
 		}
 

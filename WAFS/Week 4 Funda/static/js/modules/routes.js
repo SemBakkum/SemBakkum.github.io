@@ -8,12 +8,12 @@ var routes = (function() {
 					sections.home();
 				},
 				//Goes to which city is displayed in the URL.
-				':city': function(city){
-					sections.current(city);
+				'results': function(){
+					sections.overview();
 				},
-				//Goes to which city/overview is displayed in de URL
-				':city/forecast': function(city) {
-					sections.overview(city);
+
+				'likes': function(){
+					sections.likes();
 				}
 			})
 		}

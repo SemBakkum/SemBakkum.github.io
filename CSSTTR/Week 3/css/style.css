@@ -10,16 +10,17 @@
 >>> TABLE OF CONTENT:
 ----------------------------------------------------------------
 # STRUCTURE
-	## GLOBAL SETTINGS
-	## TARGET
-    ## HEADER
-    ## MAIN
-    	## FILTER EFFECT
-    	## PASSWORD
-    	## BUTTON   	
-	## FOOTER
+	## GLOBAL SETTINGS #26
+	## TARGET #132
+    ## HEADER #174
+    ## MAIN #214
+    	## FILTER EFFECT #235
+    	## PASSWORD #297
+    	## BUTTON #422   
+    	## LOADER #457	
+	## FOOTER #484
 # EXTRA CSS
-	## MEDIA QUERIES
+	## MEDIA QUERIES #506
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -37,6 +38,8 @@ body {
 	margin: 0;
 	background: hsl(80, 84%, 90%);
 	background-image: 
+		-webkit-linear-gradient(0deg, #264878 11px, transparent 0), -webkit-linear-gradient(0deg, #97A9C5 23px, transparent 0), -webkit-linear-gradient(0deg, #C7CDEC 23px, transparent 0);
+	background-image: 
 		linear-gradient(90deg, #264878 11px, transparent 0),
 		linear-gradient(90deg, #97A9C5 23px, transparent 0),
 		linear-gradient(90deg, #C7CDEC 23px, transparent 0);
@@ -53,6 +56,7 @@ body {
 	-webkit-flex-direction: column;
 	    -ms-flex-direction: column;
 	        flex-direction: column;
+	width: 100%;
 }
 
 @font-face {
@@ -317,8 +321,8 @@ input{
 	margin-bottom: 1em;
 }
 
-@keyframes elastic-grow {
-    from { transform: scale(0); }
+@-webkit-keyframes elastic-grow {
+    from { -webkit-transform: scale(0); transform: scale(0); }
     70% {
         transform: scale(1.1);
         animation-timing-function:
@@ -326,18 +330,33 @@ input{
 		}
 }
 
-input:not(:focus) + .callout { transform: scale(0); }
+@keyframes elastic-grow {
+    from { -webkit-transform: scale(0); transform: scale(0); }
+    70% {
+        transform: scale(1.1);
+        animation-timing-function:
+            cubic-bezier(.1,.25,1,.25);
+		}
+}
 
-input:focus + .callout { animation: elastic-grow .5s; }
+input:not(:focus) + .callout { -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); }
+
+input:focus + .callout { -webkit-animation: elastic-grow .5s; animation: elastic-grow .5s; }
 
 input:not(:focus) + .callout:not(:hover) {
-	transform: scale(0);
-	transition: .25s transform;
+	-webkit-transform: scale(0);
+	    -ms-transform: scale(0);
+	        transform: scale(0);
+	-webkit-transition: .25s -webkit-transform;
+	        transition: .25s transform;
 }
 
 .callout {
-	transition: .5s cubic-bezier(.25,.1,.3,1.5) transform;
-	transform-origin: 1.4em -.4em;
+	-webkit-transition: .5s cubic-bezier(.25,.1,.3,1.5) -webkit-transform;
+	        transition: .5s cubic-bezier(.25,.1,.3,1.5) transform;
+	-webkit-transform-origin: 1.4em -.4em;
+	    -ms-transform-origin: 1.4em -.4em;
+	        transform-origin: 1.4em -.4em;
 }
 
 .callout {	
@@ -362,10 +381,12 @@ input:not(:focus) + .callout:not(:hover) {
 	border: inherit;
 	border-right: 0;
 	border-bottom: 0;
-	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
 }
 
-input[type="checkbox"] + label::before {
+input[type="checkbox"] + label:before {
 	content: '\a0';
 	font-size: 1.4em;
 	display: inline-block;
@@ -379,7 +400,7 @@ input[type="checkbox"] + label::before {
 	line-height: 1;
 }
 
-input[type="checkbox"]:checked + label::before {
+input[type="checkbox"]:checked + label:before {
 	content: '\2713';
 	background: #00EAA4;
 }
@@ -389,11 +410,11 @@ input[type="checkbox"] {
 	clip: rect(0,0,0,0);
 }
 
-input[type="checkbox"]:focus + label::before{
+input[type="checkbox"]:focus + label:before{
 	box-shadow: 0 0 0.1em 0.1em #58a;
 }
 
-input[type="checkbox"]:disabled + label::before{
+input[type="checkbox"]:disabled + label:before{
 	background: gray;
 	box-shadow: none;
 	color: white;
@@ -425,18 +446,24 @@ BUTTON DESIGN
 	color: white;
 }
 
-[role="button"]::before{
+a[role="button"]:before{
 	content: '';
 	position: absolute;
-	top: -50px;
-	left: -50px;
-	right: -50px;
-	bottom: -50px;
+	top: -10px;
+	left: -10px;
+	right: -10px;
+	bottom: -10px;
 }
 
 /*--------------------------------------------------------------
 LOADER DESIGN
 --------------------------------------------------------------*/
+
+@-webkit-keyframes loader { 
+	to {
+		background-position: -1600px 0;
+	}
+}
 
 @keyframes loader { 
 	to {
@@ -449,9 +476,6 @@ LOADER DESIGN
 	height: 100px;
 	background: url('loader.png') 0 0;
 	-webkit-animation: loader 1s infinite steps(16);
-       -moz-animation: loader 1s infinite steps(16);
-        -ms-animation: loader 1s infinite steps(16);
-         -o-animation: loader 1s infinite steps(16);
 	animation: loader 1s infinite steps(16);
 	text-indent: 200%;
 	white-space: nowrap;

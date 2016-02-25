@@ -1,6 +1,30 @@
 var sections = (function(){
 
+	var toggle = function(route){
+
+			var allSections = document.querySelectorAll('section');
+
+			var toggleSection = document.getElementById(route);
+
+			console.log(toggleSection);
+
+			for (var c = 0; c < allSections.length; c++) {
+				allSections[c].classList.remove('active');
+			}
+
+			toggleSection.classList.toggle('active');
+
+	}
+
+	var home = function(){
+
+		toggle('home');
+
+	}
+
 	var current = function(city){
+
+		toggle('current')
 
 		loading.start();
 
@@ -41,17 +65,19 @@ var sections = (function(){
 
 				link: {
 					href: function() {
-						return '#' + city + '/overview';
+						return '#' + city + '/forecast';
 					}
 				}
 			}
 
 			//Renders template with data.
-			Transparency.render(weatherDisplay, weatherData, directives);
+			Transparency.render(views.weatherDisplay, weatherData, directives);
 		});
 	}
 
 	var overview = function(city) {
+
+		toggle('forecast')
 
 		loading.start();
 
@@ -61,7 +87,7 @@ var sections = (function(){
 
 			var data = JSON.parse(data);
 
-			var filteredData2 = _.pick(data, 'list');
+			var filteredData = _.pick(data, 'list');
 
 			gestures.right();
 
@@ -72,9 +98,9 @@ var sections = (function(){
 			//Gets function from helpers.js to calculate day & icon source.
 			for( var i = 1; i <= 5; i++){
 				weatherOverview.push({
-					day: helpers.calculateDatetime(filteredData2.list[i].dt),
-					temp: filteredData2.list[i].temp.day,
-					icon: helpers.getIcon(filteredData2.list[i].weather[0].icon)
+					day: helpers.calculateDatetime(filteredData.list[i].dt),
+					temp: filteredData.list[i].temp.day,
+					icon: helpers.getIcon(filteredData.list[i].weather[0].icon)
 				})
 			}
 
@@ -86,11 +112,13 @@ var sections = (function(){
 				}
 			}			
 
-			Transparency.render(overviewDisplay, weatherOverview, directives);
+			Transparency.render(views.overviewDisplay, weatherOverview, directives);
 		});
 	}
 
 	return{
+		toggle: toggle,
+		home: home,
 		current: current,
 		overview: overview
 	}

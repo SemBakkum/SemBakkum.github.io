@@ -8,7 +8,11 @@ var helpers = (function(){
 		var dag = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'];
 
 		if(withTime === true){
-			return dag[date.getDay()] + ' ' + date.getDate() + ' ' + maanden[date.getMonth()] + ' ' + date.getHours() + ':' + date.getMinutes();
+			var minutes = date.getMinutes();
+			if(minutes < 10){
+				minutes = '0'+minutes
+			}
+			return dag[date.getDay()] + ' ' + date.getDate() + ' ' + maanden[date.getMonth()] + ' ' + date.getHours() + ':' + minutes;
 		} else {
 			return dag[date.getDay()] + ' ' + date.getDate() + ' ' + maanden[date.getMonth()];
 		}
