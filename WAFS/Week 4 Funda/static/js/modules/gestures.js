@@ -13,7 +13,7 @@ var gestures = (function(){
 
 			//function to call when shake occurs
 			function shakeEventDidOccur () {
-				window.location = '#'
+				window.location = 'index.html'
 			};
 		}
 
