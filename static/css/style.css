@@ -379,12 +379,21 @@ MEDIA QUERIE SETTINGS
 	    display: flex;
 	    flex-direction: row;
 	    flex-wrap: wrap;
+	    padding-top: 5em;
 	}
 
 	#overview > div{
-		flex-basis: 25em;
+		flex-basis: 50%;
 		position: relative;
 	}
+
+	section > div:first-of-type{
+		margin-top: 0;
+	}
+
+
+
+
 }
 
 
