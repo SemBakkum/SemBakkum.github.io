@@ -113,7 +113,7 @@ header{
 	background-color: #F8B000;
 	border-bottom: .2em solid #83CFEE;
 	position: fixed;
-	z-index: 2;
+	z-index: 3;
 }
 
 
@@ -273,7 +273,7 @@ LOADER SETTINGS
 	position: absolute;
 	background: rgba(0,0,0, 0.7);
 	top: 0;
-	z-index: 1000 !important;
+	z-index: 2 !important;
 	width: 100vw;
 	height: 100vh;
 }
