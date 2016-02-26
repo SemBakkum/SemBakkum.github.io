@@ -380,6 +380,7 @@ MEDIA QUERIE SETTINGS
 	    flex-direction: row;
 	    flex-wrap: wrap;
 	    padding-top: 5em;
+	    padding-left: 10%;
 	}
 
 	#overview > div{
@@ -389,6 +390,14 @@ MEDIA QUERIE SETTINGS
 
 	section > div:first-of-type{
 		margin-top: 0;
+	}
+
+	.picture{
+		display: block;
+	}
+
+	#overlay{
+		margin-top: -4.1em;
 	}
 
 
