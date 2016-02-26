@@ -376,7 +376,7 @@ MEDIA QUERIE SETTINGS
 
 	#overview{
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: no-wrap;
 	}
 }
 
