@@ -374,10 +374,8 @@ MEDIA QUERIE SETTINGS
 		margin-right: 1em;
 	}
 
-	#overview{
-		display: flex;
-		flex-direction: row;
-		flex-wrap: no-wrap;
+	#overview > div{
+		flex-basis: 30%;
 	}
 }
 
