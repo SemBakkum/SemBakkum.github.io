@@ -2,6 +2,7 @@ var gestures = (function(){
 
 
 		var shake = function(){
+			
 			var myShakeEvent = new Shake({
 				    threshold: 15,
 				    timeout: 1000
