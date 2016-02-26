@@ -77,7 +77,24 @@ var sections = (function(){
 	    				return _.pick(house, 'Adres', 'FotoLargest', 'PrijsGeformatteerdHtml', 'Woonplaats', 'WGS84_X', 'WGS84_Y', 'Id');
 	    			});
 
-	    			liking.checkLike();
+	    			var liked = JSON.parse(localStorage.getItem('liked'));
+
+	    			filteredData = _.map(filteredData, function(house) {
+	    				var isLiked = _.find(liked, function(like) {
+	    					return like.Id === house.Id;
+	    				});
+
+	    				if (isLiked) {
+	    					isLiked = true;
+	    				} else {
+	    					isLiked = false;
+	    				}
+
+	    				house.Liked = isLiked;
+
+	    				return house;
+	    				
+	    			});
 
 	    			console.log(filteredData)
 
@@ -123,7 +140,27 @@ var sections = (function(){
 
 		    		console.log(liked)
 
-					liking.makeLike();
+		    		var savedLike;
+
+		    		for (var i = 0; i < liked.length; i++){
+		  				savedLike = filteredData[i];
+	    				(function(like) {
+							liked[i].addEventListener('click', function(evt) {
+								var liked = JSON.parse(localStorage.getItem('liked')) || [];
+
+								if(!evt.currentTarget.classList.contains('likeColor')) {
+			    					evt.currentTarget.classList.add('likeColor');
+			    					liked.push(like)
+			    				}
+			    				else {
+			    					evt.currentTarget.classList.remove('likeColor');
+			    					liked = _.without(liked, _.findWhere(liked, { Id: like.Id }));
+			    				}
+
+			    				localStorage.setItem('liked', JSON.stringify(liked));
+							});
+	    				}(savedLike));
+		    		}
 
 		    		toggle('overview')
 		    		loading.stop();
