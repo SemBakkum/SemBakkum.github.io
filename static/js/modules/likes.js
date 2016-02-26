@@ -2,26 +2,28 @@ var liking = ( function(){
 
 	var makeLike = function(){
 
-		var savedLike;
+			var savedLike;
 
-		for (var i = 0; i < liked.length; i++){
-				savedLike = filteredData[i];
-			(function(like) {
-				liked[i].addEventListener('click', function(evt) {
-					var liked = JSON.parse(localStorage.getItem('liked')) || [];
+			for (var i = 0; i < liked.length; i++){
+					savedLike = filteredData[i];
+				(function(like) {
+					liked[i].addEventListener('click', function(evt) {
+						var liked = JSON.parse(localStorage.getItem('liked')) || [];
 
-					if(!evt.currentTarget.classList.contains('likeColor')) {
-    					evt.currentTarget.classList.add('likeColor');
-    					liked.push(like)
-    				}
-    				else {
-    					evt.currentTarget.classList.remove('likeColor');
-    					liked = _.without(liked, _.findWhere(liked, { Id: like.Id }));
-    				}
+						if(!evt.currentTarget.classList.contains('likeColor')) {
+	    					evt.currentTarget.classList.add('likeColor');
+	    					liked.push(like)
+	    				}
+	    				else {
+	    					evt.currentTarget.classList.remove('likeColor');
+	    					liked = _.without(liked, _.findWhere(liked, { Id: like.Id }));
+	    				}
 
-    				localStorage.setItem('liked', JSON.stringify(liked));
-				});
-			}(savedLike));
+	    				localStorage.setItem('liked', JSON.stringify(liked));
+					});
+				}(savedLike));
+			}
+		
 		}
 
 		var checkLike = function(){
@@ -42,7 +44,8 @@ var liking = ( function(){
 				house.Liked = isLiked;
 
 				return house;
-		})
+				
+			});
 	}
 
 	return {

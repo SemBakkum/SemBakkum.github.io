@@ -78,8 +78,6 @@ var sections = (function(){
 	    			});
 
 	    			liking.checkLike();
-	    				
-	    			});
 
 	    			console.log(filteredData)
 
@@ -125,7 +123,7 @@ var sections = (function(){
 
 		    		console.log(liked)
 
-		    		liking.makeLike();
+					liking.makeLike();
 
 		    		toggle('overview')
 		    		loading.stop();
