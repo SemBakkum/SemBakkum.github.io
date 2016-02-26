@@ -6,7 +6,7 @@ var sections = (function(){
 
 		var toggleSection = document.getElementById(route);
 
-		console.log(allSections);
+		//console.log(allSections);
 
 		for (var c = 0; c < allSections.length; c++) {
 			allSections[c].classList.remove('active');
@@ -36,13 +36,13 @@ var sections = (function(){
 
 	    		retrieve.currentPosition(latLng, function(data){
 	    		var data = JSON.parse(data);
-	    		console.log(data);
+	    		//console.log(data);
 
 	    		var filteredData = _.map(data.results, function(street){
 	    			return _.pick(street, 'address_components');
 	    		});
 
-	    		console.log(filteredData)
+	    		//console.log(filteredData)
 
 	    		var components = filteredData[0].address_components;
 
@@ -52,7 +52,7 @@ var sections = (function(){
 
 	    		postal = postal[0].long_name.split(' ').join('');
 
-	    		console.log(postal);
+	    		//console.log(postal);
 
 	    		var city = components.filter(function(component){
 	    			return component.types.indexOf('administrative_area_level_2') >= 0;
@@ -60,7 +60,7 @@ var sections = (function(){
 
 	    		city = city[0].long_name;
 
-	    		console.log(city);
+	    		//console.log(city);
 
 	    		var apiData = { 
 	    			postal: postal,
@@ -71,7 +71,7 @@ var sections = (function(){
 
 		    		var data = JSON.parse(data);
 
-		    		console.log(data)
+		    		//console.log(data)
 
 		    		var filteredData = _.map(data.Objects, function(house){
 	    				return _.pick(house, 'Adres', 'FotoLargest', 'PrijsGeformatteerdHtml', 'Woonplaats', 'WGS84_X', 'WGS84_Y', 'Id');
@@ -90,13 +90,15 @@ var sections = (function(){
 	    					isLiked = false;
 	    				}
 
+	    				console.log('isLiked', isLiked);
+
 	    				house.Liked = isLiked;
 
 	    				return house;
 	    				
 	    			});
 
-	    			console.log(filteredData)
+	    			//console.log('filtered data',filteredData)
 
 		    		var directives = {
 						FotoLargest: {
@@ -136,36 +138,42 @@ var sections = (function(){
 
 		    		Transparency.render(views.display, filteredData, directives);
 
+		    		toggle('overview')
+
 		    		var liked = document.querySelectorAll('.like');
 
-		    		console.log(liked)
+
+		    		//console.log(liked)
 
 		    		var savedLike;
 
 		    		for (var i = 0; i < liked.length; i++){
 		  				savedLike = filteredData[i];
 	    				(function(like) {
+
 							liked[i].addEventListener('click', function(evt) {
 								var liked = JSON.parse(localStorage.getItem('liked')) || [];
 
-								if(!evt.currentTarget.classList.contains('likeColor')) {
-			    					evt.currentTarget.classList.add('likeColor');
+								evt.currentTarget.classList.toggle('likeColor');
+
+							
+								if(evt.currentTarget.classList.contains('likeColor')) {
+			    					like.Liked = true;
 			    					liked.push(like)
 			    				}
 			    				else {
-			    					evt.currentTarget.classList.remove('likeColor');
+			    					like.Liked = false;
 			    					liked = _.without(liked, _.findWhere(liked, { Id: like.Id }));
+			    						
 			    				}
 
+			    				
 			    				localStorage.setItem('liked', JSON.stringify(liked));
+			    				
+			    				
 							});
 	    				}(savedLike));
-							// evt.savedLike = filteredData[i - 1]
-		    	// 			
-		    				
 		    		}
-
-		    		toggle('overview')
 		    		loading.stop();
 		    	})
 	    		});
@@ -179,7 +187,7 @@ var sections = (function(){
 
 		var liked = JSON.parse(localStorage.getItem('liked'));
 
-		console.log(liked)
+		//console.log(liked)
 
 		var directives = {
 			FotoLargest: {
