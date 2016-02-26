@@ -50,4 +50,4 @@ var liking = ( function(){
 		checkLike: checkLike
 	}
 
-})
+}())
