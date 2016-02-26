@@ -377,6 +377,10 @@ MEDIA QUERIE SETTINGS
 	#overview > div{
 		width: 30%;
 	}
+
+	#overlay{
+		width: 100%;
+	}
 }
 
 
