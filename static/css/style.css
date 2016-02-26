@@ -205,6 +205,7 @@ section > div:first-of-type{
 	position: relative;
 	width: 100%;
 	height: auto;
+	display: block;
 }
 
 #overlay{
@@ -214,7 +215,7 @@ section > div:first-of-type{
 	margin: 0;
 	position: absolute;
 	z-index: 1;
-	margin-top: -4.5em;
+	margin-top: -4.1em;
 	left: 0;
 }
 
@@ -391,18 +392,6 @@ MEDIA QUERIE SETTINGS
 	section > div:first-of-type{
 		margin-top: 0;
 	}
-
-	.picture{
-		display: block;
-	}
-
-	#overlay{
-		margin-top: -4.1em;
-	}
-
-
-
-
 }
 
 
