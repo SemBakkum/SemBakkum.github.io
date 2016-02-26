@@ -267,9 +267,8 @@ LOADER SETTINGS
 	display: flex !important;
 	flex-direction: column;
 	align-items: center;
-	-webkit-transform: translateX(0);
-            transform: translateX(0);
-            //djsggd
+	-webkit-transform: translateX(0) !important;
+            transform: translateX(0) !important;
 	position: absolute;
 	background: rgba(0,0,0, 0.7);
 	top: 0;
