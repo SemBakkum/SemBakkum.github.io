@@ -363,7 +363,7 @@ MEDIA QUERIE SETTINGS
 @media screen and (min-width: 40em) {
 
 	select{
-		width: 20vw;
+		width: 10vw;
 	}
 }
 
