@@ -146,6 +146,10 @@
 		text-align: right;
 	}
 
+	main{
+		margin: 1em;
+	}
+
 /* Section/Article */
 
 	section.special, article.special {
