@@ -375,6 +375,10 @@ li > a > svg{
 	width: 2em;
 }
 
+.menu-item{
+    fill: white;
+}
+
 /*--------------------------------------------------------------
 SECTION ANIMATION SETTINGS
 --------------------------------------------------------------*/
@@ -397,6 +401,13 @@ SECTION ANIMATION SETTINGS
     height: 100%;
     background-color: #E7F1F5;
 }
+
+#noScript{
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    text-align: center;
+}
+
 
 /*--------------------------------------------------------------
 MEDIA QUERIE SETTINGS
