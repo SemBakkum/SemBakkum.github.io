@@ -11,7 +11,7 @@
   </p>
 </article>
 
-<h2> Custom webfonts </h2> 
+<h2>Custom webfonts </h2> 
 
 <article> 
   <p> 
@@ -20,7 +20,7 @@
   </p>
 </article> 
 
-<h2> Color </h2> 
+<h2>Color</h2> 
 
 <article> 
   <p> 
