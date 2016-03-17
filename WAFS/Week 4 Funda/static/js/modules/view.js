@@ -9,7 +9,13 @@ var views = (function(){
 	var dataCap = document.getElementById("selected");
 
 	var setting = dataCap.value;
+    
+    var place = document.getElementById("place");
 
+    var street = document.getElementById("street");
+    
+    var form = document.getElementById("form");
+    
 	dataCap.addEventListener('change',function() {
 		setting = dataCap.value;
 		console.log(setting)
@@ -18,13 +24,20 @@ var views = (function(){
 	var getSetting = function() {
 		return setting;
 	}
+    
+    form.addEventListener('submit', function(e) {
+        window.location.href = '#results';
+        e.preventDefault();
+    }, false);
+
 
 	return {
 		homeDisplay: homeDisplay,
 		display: display,
 		likes: likes,
-		setting: getSetting
-
+		setting: getSetting,
+        place: place,
+        street: street
 	}
 
 }());

@@ -50,20 +50,19 @@
 
 				<div id="select">
 					<h1 tabindex="0">Type woning</h1>
-                    <form>
+                    <form id="form" action="#result" method="get">
                         <select id="selected">
                             <option value="koop">Koop</option>
                             <option value="huur">Huur</option>
                         </select>
-                        <input type="text" name="Plaats" placeholder="Plaats">
-                        <input type="text" name="Straat" placeholder="Straat">
+                        <input type="text" name="Plaats" placeholder="Plaats" id="place" required='required'>
+                        <input type="text" name="Straat" placeholder="Straat" id="street" required='required'>
+                        <button data-bind="link" type="submit" id="submit">Zoeken</button>
                     </form>
 
 				</div>
 
-				<div id="search">
-					<a href="#results" data-bind="link" role="button">Zoeken</a>
-				</div>
+				
 
 
 			</section>
@@ -104,6 +103,7 @@
 	<script type="text/javascript" src="static/js/libs/microajax.minified.js"></script>
 	<script type="text/javascript" src="static/js/libs/shake.js"></script>
 	<script type="text/javascript" src="static/js/libs/routie.js"></script>	
+    <script type="text/javascript" src="static/js/modules/checker.js"></script>
 	<script type="text/javascript" src="static/js/modules/retrieve.js"></script>
 	<script type="text/javascript" src="static/js/modules/loader.js"></script>
 	<script type="text/javascript" src="static/js/modules/gestures.js"></script>

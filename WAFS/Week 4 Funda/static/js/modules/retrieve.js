@@ -15,12 +15,17 @@ var retrieve = (function(){
 	}
 
 	var houses = function(apiData, cb) {
-		microAjax( scHs.baseUrl + scHs.clientId + '?type=' + views.setting() +'&zo=/' + apiData.city + '/' + apiData.postal + '/+2km/&page=1&pagesize=25', cb)
+		microAjax( scHs.baseUrl + scHs.clientId + '?type=' + views.setting() +'&zo=/' + apiData.city + '/' + apiData.postal + '/+2km/&page=1&pagesize=25', cb);
 	}
+    
+    var inputHouses = function (cb) {
+        microAjax(scHs.baseUrl + scHs.clientId + '?type=' + views.setting() +'&zo=/' + views.place.value.toLowerCase() + '/straat-' + views.street.value.toLowerCase() + '/+2km/&page=1&pagesize=25', cb);
+    }
 
 	return {
 		currentPosition: currentPosition,
-		houses: houses
+		houses: houses,
+        inputHouses: inputHouses
 	}
 }());
 

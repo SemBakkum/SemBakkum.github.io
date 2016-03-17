@@ -18,89 +18,66 @@ var sections = (function(){
 
 	var home = function() {
 		toggle('home');
+        
+        if (navigator.geolocation) {
+            document.getElementById('place').classList.add('noInput');
+            document.getElementById('place').required = false;
+            document.getElementById('street').classList.add('noInput');
+            document.getElementById('street').required = false;
+        }
 	}
 
 	var overview = function() {
-
-		loading.start();
-
-		if (navigator.geolocation) {
-	        navigator.geolocation.getCurrentPosition(function(position){
-	        	var lat = position.coords.latitude;
-	    		var lng = position.coords.longitude;
-
-	    		var latLng = {
-	    		lat: lat,
-	    		lng: lng
-	    		}
-
-	    		retrieve.currentPosition(latLng, function(data){
-	    		var data = JSON.parse(data);
-	    		//console.log(data);
-
-	    		var filteredData = _.map(data.results, function(street){
-	    			return _.pick(street, 'address_components');
-	    		});
-
-	    		//console.log(filteredData)
-
-	    		var components = filteredData[0].address_components;
-
-	    		var postal = components.filter(function(component){
-	    			return component.types.indexOf('postal_code') >= 0;
-	    		})
-
-	    		postal = postal[0].long_name.split(' ').join('');
-
-	    		//console.log(postal);
-
-	    		var city = components.filter(function(component){
-	    			return component.types.indexOf('administrative_area_level_2') >= 0;
-	    		})
-
-	    		city = city[0].long_name;
-
-	    		//console.log(city);
-
-	    		var apiData = { 
-	    			postal: postal,
-	    			city: city
-	    		}
-
-		    	retrieve.houses(apiData, function(data){
-
-		    		var data = JSON.parse(data);
-
-		    		//console.log(data)
-
-		    		var filteredData = _.map(data.Objects, function(house){
-	    				return _.pick(house, 'Adres', 'FotoLargest', 'PrijsGeformatteerdHtml', 'Woonplaats', 'WGS84_X', 'WGS84_Y', 'Id');
-	    			});
-
-	    			var liked = JSON.parse(localStorage.getItem('liked'));
-
-	    			filteredData = _.map(filteredData, function(house) {
-	    				var isLiked = _.find(liked, function(like) {
-	    					return like.Id === house.Id;
-	    				});
-
-	    				if (isLiked) {
-	    					isLiked = true;
-	    				} else {
-	    					isLiked = false;
-	    				}
-
-	    				console.log('isLiked', isLiked);
-
-	    				house.Liked = isLiked;
-
-	    				return house;
-	    				
-	    			});
-
-	    			//console.log('filtered data',filteredData)
-
-		    		var directives = {
+        
+        if (navigator.geolocation) {
+            
+            loading.start();
+            
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                
+                var latLng = {
+                    lat: lat,
+                    lng: lng
+                }
+                
+                retrieve.currentPosition(latLng, function(data) {
+                    var data = JSON.parse(data);
+                    
+                    var filteredData = _.map(data.results, function(street) {
+                        return _.pick(street, 'address_components');
+                    });
+                    
+                    var components = filteredData[0].address_components;
+                    
+                    var postal = components.filter(function(component) {
+                        return component.types.indexOf('postal_code') >= 0;
+                    });
+                    
+                    postal = postal[0].long_name.split(' ').join('');
+                    console.log(postal);
+                    
+                    var city = components.filter(function(component) {
+                        return component.types.indexOf('administrative_area_level_2') >= 0;
+                    });
+                    
+                    city = city[0].long_name;
+                    
+                    var apiData = {
+                        postal: postal,
+                        city: city
+                    }
+                    
+                    retrieve.houses(apiData, function(data) {
+                        var data = JSON.parse(data);
+                        console.log(data);
+                        
+                        var filteredData = _.map(data.Objects, function(house) {
+                            return _.pick(house, 'Adres', 'FotoLargest', 'PrijsGeformatteerdHtml', 'Woonplaats', 'WGS84_X', 'WGS84_Y', 'Id');
+                        });
+                        
+                        var directives = {
 						FotoLargest: {
 							src: function() {
 								return this.FotoLargest;
@@ -133,52 +110,71 @@ var sections = (function(){
 							}
 						}
 					}
+                        loading.stop();
+                        
+                        Transparency.render(views.display, filteredData, directives);
+                        
+                        toggle('overview');
+                        
+                    })
+                    
+                    
+                })
+            })
+            
+        } else if (!geolocation.navigator) {
+            
+            loading.start();
+            
+            retrieve.inputHouses(function (data) {
+                var data = JSON.parse(data);
+                console.log(data);
 
-					gestures.shake();
+                var filteredData = _.map(data.Objects, function(house) {
+                    return _.pick(house, 'Adres', 'FotoLargest', 'PrijsGeformatteerdHtml', 'Woonplaats', 'WGS84_X', 'WGS84_Y', 'Id');
+                });
 
-		    		Transparency.render(views.display, filteredData, directives);
+                var directives = {
+                    FotoLargest: {
+                        src: function() {
+                            return this.FotoLargest;
+                        }
+                    },
 
-		    		toggle('overview')
+                    route: {
+                        href: function(){
+                            return 'http://maps.google.com/maps?saddr=Current%20Location&daddr=' + this.WGS84_Y + ',' + this.WGS84_X;
+                        }
+                    },
 
-		    		var liked = document.querySelectorAll('.like');
+                    PrijsGeformatteerdHtml: {
+                        html: function() {
+                            return this.PrijsGeformatteerdHtml;
+                        }
+                    },
 
+                    Liked: {
+                        class: function(){
+                            if(this.Liked === true){
+                                return 'flaticon-shapes like likeColor'
+                            } else{
+                                return 'flaticon-shapes like'
+                            }
+                        },
 
-		    		//console.log(liked)
+                        html: function(){
+                            return ''
+                        }
+                    }
+                }
+                
+                loading.stop();
 
-		    		var savedLike;
+                Transparency.render(views.display, filteredData, directives);
 
-		    		for (var i = 0; i < liked.length; i++){
-		  				savedLike = filteredData[i];
-	    				(function(like) {
-
-							liked[i].addEventListener('click', function(evt) {
-								var liked = JSON.parse(localStorage.getItem('liked')) || [];
-
-								evt.currentTarget.classList.toggle('likeColor');
-
-							
-								if(evt.currentTarget.classList.contains('likeColor')) {
-			    					like.Liked = true;
-			    					liked.push(like)
-			    				}
-			    				else {
-			    					like.Liked = false;
-			    					liked = _.without(liked, _.findWhere(liked, { Id: like.Id }));
-			    						
-			    				}
-
-			    				
-			    				localStorage.setItem('liked', JSON.stringify(liked));
-			    				
-			    				
-							});
-	    				}(savedLike));
-		    		}
-		    		loading.stop();
-		    	})
-	    		});
-	        });
-	    }
+                toggle('overview');
+            })
+        }
 	}
 
 	var likes = function(){

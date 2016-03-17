@@ -93,6 +93,10 @@ section{
             transform: translateX(0);
 }
 
+.noInput {
+    display: none;
+}
+
 @font-face {
     font-family: 'Euro';
     src: local('Baskerville'), local('Palatino'), local('Book Antiqua');
@@ -198,13 +202,14 @@ select{
     margin: 1em;
 }
 
-[role="button"]{
-	width: 50%;
+button{
+	width: 15vw;
 	color: white;
 	background-color: #83CFEE;
 	padding: 1em 4em;
 	border-radius: .5em;
-	margin-left: -.5em;
+    border: none;
+    font-size: 1em;
 }
 
 #search{
