@@ -195,7 +195,7 @@ select{
 	width: 50vw;
 	border: none;
 	font-size: 1em;
-	margin-bottom: 3em;
+    margin: 1em;
 }
 
 [role="button"]{
@@ -408,6 +408,53 @@ SECTION ANIMATION SETTINGS
     text-align: center;
 }
 
+/*--------------------------------------------------------------
+FORM SETTINGS
+--------------------------------------------------------------*/
+
+form {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+input { 
+    margin: 1em;
+    height: 32px;
+    height: 2em;
+    width: 50%;
+	width: 50vw;
+	border: none;
+	font-size: 1em;
+    border-radius: 5px;
+}
+
+::-webkit-input-placeholder {
+    text-indent: .6em;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-indent: .6em;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */ 
+    text-indent: .6em;
+}
+
+:-ms-input-placeholder {  
+    text-indent: .6em;
+}
 
 /*--------------------------------------------------------------
 MEDIA QUERIE SETTINGS
@@ -418,6 +465,10 @@ MEDIA QUERIE SETTINGS
 	select{
 		width: 15vw;
 	}
+    
+    input {
+        width: 15vw;
+    }
 
 	#home{
 		background-size: 60vw;
