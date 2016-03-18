@@ -1,69 +1,185 @@
-<h1> Readme of the branch </h1>
+# Readmeof the branch
 
-<h2>Images</h2> 
+##Core feature
 
-<article> 
-  <p>
-    The icons, logo and images all disappear when using a image blocker. 
-    My solution for this is displaying the icons and the logo as an inline svg
-    and giving them good alt attributes. For the images of the houses is it needed to give 
-    them a good alt attribute when they come from the server. 
-  </p>
-</article>
+The core feature of this prototype is the ability to search houses based on your geolocation. 
 
-<h2>Custom webfonts </h2> 
+##Fallback
 
-<article> 
-  <p> 
-    Because my web app doesn't make use of any custom webfonts there was no problem disabling them. 
-    Instead I already made good use of fallback fonts in case the primirary font isn't available. 
-  </p>
-</article> 
+As a fallback I made a check to see if geolocation is supported on your device. 
 
-<h2>Color</h2> 
+```javascript 
 
-<article> 
-  <p> 
-    To check if the readability of the web app was still okay I used the app sim Daltonism. 
-    There was a change in contrast, but besides that the visibility was still okay and everything was good to read. 
-  </p>
-</article> 
+if (navigator.geolocation) {
+            document.getElementById('place').classList.add('noInput');
+            document.getElementById('place').required = false;
+            document.getElementById('street').classList.add('noInput');
+            document.getElementById('street').required = false;
+        }
+        
+```
 
-<h2>Broadband internet</h2>
+If the geolocation is supported the fallback input boxes aren't displayed anymore. 
 
-<article> 
-  <p>
-    When the web app is on the home page the download capacity isn't that much, but when you go to the results page 
-    the web app downloads 3.5MB of photos. The solution to reduce the amount of downloaded MB's is to optimize the 
-    photos on the server side so the size will be a smaller amount. 
-  </p>
-</article>
+For the results page of the prototype the check is doen again, but this time if geolocation isn't supported the prototype will run the fallback script. 
 
-<h2>Mouse/Trackpad</h2> 
+```javascript
 
-<article> 
-  <p>
-    At first I didn't had any problems with the tab navigation, but when I looked closer I found out that 
-    the tab skipped some important things on the web app. The solution that I used was 'tabindex'. After 
-    featuring this in the web app the tab navigation worked better than before and I'm quite happy with the end result. 
-  </p>
-</article> 
+if (navigator.geolocation) {
+            
+            loading.start();
+            
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                
+                var latLng = {
+                    lat: lat,
+                    lng: lng
+                }
+                
+                retrieve.currentPosition(latLng, function(data) {
+                    var data = JSON.parse(data);
+                    
+                    var filteredData = _.map(data.results, function(street) {
+                        return _.pick(street, 'address_components');
+                    });
+                    
+                    var components = filteredData[0].address_components;
+                    
+                    var postal = components.filter(function(component) {
+                        return component.types.indexOf('postal_code') >= 0;
+                    });
+                    
+                    postal = postal[0].long_name.split(' ').join('');
+                    console.log(postal);
+                    
+                    var city = components.filter(function(component) {
+                        return component.types.indexOf('administrative_area_level_2') >= 0;
+                    });
+                    
+                    city = city[0].long_name;
+                    
+                    var apiData = {
+                        postal: postal,
+                        city: city
+                    }
+                    
+                    retrieve.houses(apiData, function(data) {
+                        var data = JSON.parse(data);
+                        console.log(data);
+                        
+                        var filteredData = _.map(data.Objects, function(house) {
+                            return _.pick(house, 'Adres', 'FotoLargest', 'PrijsGeformatteerdHtml', 'Woonplaats', 'WGS84_X', 'WGS84_Y', 'Id');
+                        });
+                        
+                        var directives = {
+						FotoLargest: {
+							src: function() {
+								return this.FotoLargest;
+							}
+						},
 
-<h2>Javascript turned off</h2> 
+						route: {
+							href: function(){
+								return 'http://maps.google.com/maps?saddr=Current%20Location&daddr=' + this.WGS84_Y + ',' + this.WGS84_X;
+							}
+						},
 
-<article> 
-  <p>
-    The complete web app is build in Javascript. So when I turned this off only the HTML and the CSS where visable. 
-    The solution what I think could make this work when Javascript is disabled is to render the complete web app on the server side 
-    so it can push back the content of the web app. For now I used the <noScript> tag the give the message that Javascript is a must to      run this web app properly.
-  </p>
-</article> 
+						PrijsGeformatteerdHtml: {
+							html: function() {
+								return this.PrijsGeformatteerdHtml;
+							}
+						}
 
-<h2>Screenreader</h2> 
+					}
+                        loading.stop();
+                        
+                        Transparency.render(views.display, filteredData, directives);
+                        
+                        toggle('overview');
+                        
+                    })
+                    
+                    
+                })
+            })
+            
+        } else if (!geolocation.navigator) {
+            
+            loading.start();
+            
+            retrieve.inputHouses(function (data) {
+                var data = JSON.parse(data);
+                console.log(data);
 
-<article> 
-  <p>
-    After refactoring the tab navigation and using alt attributes the screen reader work alsmost perfectly thanks to
-    also using the tabindex. 
-  </p>
-</article>
+                var filteredData = _.map(data.Objects, function(house) {
+                    return _.pick(house, 'Adres', 'FotoLargest', 'PrijsGeformatteerdHtml', 'Woonplaats', 'WGS84_X', 'WGS84_Y', 'Id');
+                });
+
+                var directives = {
+                    FotoLargest: {
+                        src: function() {
+                            return this.FotoLargest;
+                        }
+                    },
+
+                    route: {
+                        href: function(){
+                            return 'http://maps.google.com/maps?saddr=Current%20Location&daddr=' + this.WGS84_Y + ',' + this.WGS84_X;
+                        }
+                    },
+
+                    PrijsGeformatteerdHtml: {
+                        html: function() {
+                            return this.PrijsGeformatteerdHtml;
+                        }
+                    }
+                }
+                
+                loading.stop();
+
+                Transparency.render(views.display, filteredData, directives);
+
+                toggle('overview');
+            })
+        }
+	}
+
+	var likes = function(){
+
+		toggle('likes')
+
+		var liked = JSON.parse(localStorage.getItem('liked'));
+
+		//console.log(liked)
+
+		var directives = {
+			FotoLargest: {
+				src: function() {
+					console.log(this)
+					return this.FotoLargest;
+				}
+			},
+
+			route: {
+				href: function(){
+					return 'http://maps.google.com/maps?saddr=Current%20Location&daddr=' + this.WGS84_Y + ',' + this.WGS84_X;
+				}
+			},
+
+			PrijsGeformatteerdHtml: {
+				html: function() {
+					return this.PrijsGeformatteerdHtml;
+				}
+			}
+		}
+
+		gestures.shake();
+
+		Transparency.render(views.likes, liked, directives);
+	}
+	
+	```
+	
+	
