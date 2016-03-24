@@ -36,5 +36,6 @@ body {
 }
 
 .enhanced-with-js section{
-    display: inline-block !important;
+    display: -moz-inline-stack;
+    display: inline-block;
 }
