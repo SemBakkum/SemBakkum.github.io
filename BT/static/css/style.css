@@ -19,7 +19,7 @@ body {
 }
 
 .enhanced-with-js div{
-    width: 250px;
+    //width: 250px;
     background: #050928;
     overflow: auto;
     text-align: center;
