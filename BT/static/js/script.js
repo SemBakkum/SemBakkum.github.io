@@ -22,6 +22,12 @@
         
     };
     
+    if ('ontouchstart' in document.documentElement) {
+            handler = 'touchstart';
+        } else {
+            handler = 'click';
+        }
+    
     for (var i = 0; i < sections.length; i += 1) {
         var btn = document.createElement('button');
         btn.innerHTML = sections[i].querySelector('h2').innerHTML;
@@ -29,15 +35,9 @@
         
         
         
-        btn.addEventListener('click', play, false);
+        btn.addEventListener(handler, play, false);
         audios[i].removeAttribute('controls');
     }
-    
-    if ('ontouchstart' in document.documentElement) {
-            handler = 'touchstart';
-        } else {
-            handler = 'click';
-        }
     
     document.body.classList.add('enhanced-with-js')
     
