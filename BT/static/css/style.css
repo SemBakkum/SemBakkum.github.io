@@ -21,6 +21,7 @@ body {
 .enhanced-with-js div{
     width: 500px;
     background: #050928;
+/*
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -31,4 +32,6 @@ body {
     -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
     justify-content: space-around;
+*/
+    
 }
