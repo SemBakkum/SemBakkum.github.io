@@ -36,6 +36,5 @@ body {
 }
 
 .enhanced-with-js section{
-    display: inline-block;
-    float: left;
+    display: inline-block !important;
 }
