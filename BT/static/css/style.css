@@ -1,0 +1,34 @@
+body { 
+    font-family: Roboto, arial, helvetica, sans-serif;
+    margin: 16px;
+}
+
+.enhanced-with-js h2{
+    display: none;
+}
+
+.enhanced-with-js button {
+    width: 100px;
+    height: 100px;
+    background: #676caf;
+    color: azure;
+    font-size: 16px;
+    font-size: 1em;
+    margin: 8px;
+    border-radius: 6px;
+}
+
+.enhanced-with-js div{
+    width: 500px;
+    background: #050928;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
