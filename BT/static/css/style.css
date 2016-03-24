@@ -22,7 +22,6 @@ body {
     width: 250px;
     background: #050928;
     overflow: auto;
-    background: #050928;
     text-align: center;
     display: -webkit-box;
     display: -webkit-flex;
@@ -38,4 +37,5 @@ body {
 
 .enhanced-with-js section{
     display: inline-block;
+    float: left;
 }
