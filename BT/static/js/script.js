@@ -3,6 +3,7 @@
     
     var audios = document.querySelectorAll('audio');
     var sections = document.querySelectorAll('section');
+    var handler;
     
     function play(event) {
         
