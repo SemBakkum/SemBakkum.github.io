@@ -33,6 +33,12 @@
         audios[i].removeAttribute('controls');
     }
     
+    if ('ontouchstart' in document.documentElement) {
+            handler = 'touchstart';
+        } else {
+            handler = 'click';
+        }
+    
     document.body.classList.add('enhanced-with-js')
     
 }());
