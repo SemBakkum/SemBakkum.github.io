@@ -54,6 +54,10 @@ body {
     width: 300px;
     overflow: auto;
     background: #050928;
+<<<<<<< HEAD
+=======
+    overflow: auto;
+>>>>>>> origin/master
     text-align: center;
     display: -webkit-box;
     display: -webkit-flex;
@@ -66,9 +70,16 @@ body {
     -ms-flex-pack: distribute;
     justify-content: space-around;
 }
+<<<<<<< HEAD
 */
 
 
 .enhanced-with-js section{
     float: left;
+=======
+
+.enhanced-with-js section{
+    display: -moz-inline-stack;
+    display: inline-block;
+>>>>>>> origin/master
 }
