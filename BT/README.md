@@ -84,5 +84,181 @@
   cache kunnen opslaan.
 </p>
 
+#BT eindopdracht beatbox
+
+##Onderzoek
+
+Uit de cases die beschikbaar waren voor de eindopdracht heb ik gekozen voor de beatbox.
+Voor deze case ben ik aller eerst de audio tag gaan onderzoeken. Het blijkt dat deze in bijna alle browsers (behalve IE 8 & Opera Mini 8) wordt ondersteund, maar wat zijn de mogelijkheden van de audio tag?
+
+###Browser support
+
+De audio tag heeft meerdere attributen die er toepasbaar op zijn, zoals: 
+
+1. src — Address of the resource
+2. crossorigin — How the element handles crossorigin requests
+3. preload — Hints how much buffering the media resource will likely need
+4. autoplay — Hint that the media resource can be started automatically when the page is loaded
+5. mediagroup — Groups media elements together with an implicit MediaController
+6. loop — Whether to loop the media resource
+7. muted — Whether to mute the media resource by default
+8. controls — Show user agent controls
+
+Deze attributen kunnen elk ook hun eigen keywords hebben. Het preload attribuut kan bijvoorbeeld 'none' en 'auto' als keyword hebben. None houdt in dat de src van de audio tag niet gepreload hoeft te worden. Auto geeft aan dat de src gepreload kan worden, mits de browser dit ondersteund. Alle browsers ondersteunen daarnaast ook niet elk audio format. Als voorbeeld wordt de audio extensie .wav door zo goed als alle IE browsers niet ondersteund. MP3 daarin tegen weer wel. 
+
+Met dit in het achterhoofd ben ik audio samples gaan uitzoeken voor mijn beatbox en deze gaan converten naar mp3. 
+
+####Can I use audio tag support
+[Can I use audio](http://caniuse.com/#feat=audio "Audio")
+
+####Can I use mp3 support
+[Can I use mp3](http://caniuse.com/#feat=mp3 "MP3")
+
+###Audio tag attributes
+[whatwg.org audio tag](https://html.spec.whatwg.org/multipage/embedded-content.html#the-audio-element "Audio attributues")
+
+##HTML
+
+Bij het opzetten van de HTML heb ik nagedacht over de structuur en hoe deze ook met de tab nog steeds goed te gebruiken is. 
+
+```
+ <main>
+            
+            <h1>Vunzige deuntjes</h1>
+            <div>
+                <section>
+                    <h2>Hard kick</h2>
+                    <audio id="hardKick" src="sounds/hard-kick.mp3" preload="auto" controls loop>
+                        <a href="sounds/hard-kick.mp3">Download hard kick</a>
+                    </audio>
+                </section>
+            </div>
+  </main>
+```
+
+In de code is al een soort van fallback te zien. Binnen de audio tag leeft een a tag. Mocht de audio tag niet ondersteund worden (zoals in IE 8) dan krijgt de gebruiker als nog een link te zien. Zodra er op deze link geklikt wordt kan het geluidje via een externe player afgespeeld worden. Dit heb ik gestest in IE 8, windows media player wordt dan geopend en speelt het geluidje af. 
+
+Wordt de audio tag wel ondersteund dan krijgt de gebruiker de standaard controls te zien en kan hij/zij deze afspelen. Doordat in de audio tag het attribuut loop wordt meegegeven zal het geluidje zich herhaald afspelen. Zo is de gebruiker instaat om een eigen beat te maken met de beschikbare geluiden. In weze is de beatbox bij deze al gerealiseerd, maar nog niet enhanced voor een betere/fijnere gebruikers ervaring. 
+
+##Enhancement met JS
+
+###Buttons
+
+Nu zijn de standaard controls natuurlijk niet echt mooi, maar het de basis is er en nu kan ik deze enhancen met JavaScript. 
+
+```javascript
+for (var i = 0; i < sections.length; i += 1) {
+        var btn = document.createElement('button');
+        btn.innerHTML = sections[i].querySelector('h2').innerHTML;
+        sections[i].appendChild(btn);
+        btn.addEventListener(handler, play, false);
+        audios[i].removeAttribute('controls');
+    }
+```
+
+Met JavaScript ben ik gaan kijken hoeveel sections er zijn. Op basis van dat aantal heb ik via JavaScript buttons laten maken die als tekst de h2 tekst uit de HTML mee krijgen. De buttons maak ik omdat de audio tag minimaal te stylen is met CSS. 
+
+De buttons worden vervolgens in de section geplaatst waar ze thuis horen en het attribuut controls wordt verwijderd van de audio tag binnen die sectie. Dit doe ik zodat de player niet meer zichtbaar is, omdat we het geluid nu gaan afspelen via de button. 
+
+```javascript
+function play(event) {
+        
+        console.log(this);
+        
+        var audio = this.parentNode.querySelector('audio');
+        
+        if(audio.paused){
+            
+            audio.play();
+            audio.currentTime = 0;
+            
+        } else {
+            
+            audio.pause();
+            
+        }
+        
+    };
+```
+Om dit voor elkaar te krijgen wordt er gekeken op welke button er geklikt wordt. Binnen de section waar de button in zit wordt vervolgens de audio tag gezocht en afgespeeld. audio.currentTime = 0; geeft aan dat het afspelen van het geluid bij 0 moet beginnen elke keer als de gebruiker op de button klikt. Om meer interactie toe te voegen en de gebruikers ervaring verder te enhancen heb ik er voor gezorgd dat de geluiden ook d.m.v. keypress kunnen worden afgespeeld. Dit kan door de toetsen a, s, d, f, g, h, j, k in te drukken. 
+
+```javascript
+  var hardKick = new Audio('sounds/hard-kick.mp3');
+ 
+  var hardKickPlay = function() {
+        hardKick.play();
+        hardKick.currentTime = 0;
+    };
+  
+  window.onkeydown = function (e) {
+        
+      var down = event.keyCode;
+        
+        switch (down) {
+
+          case(65): hardKickPlay();
+          break;
+        }
+  };
+```
+
+Om de buttons die via JavaScript zijn aangemaakt een eigenstyling te geven voeg ik de volgende class toe via JavaScript.
+
+```javascript 
+document.body.classList.add('enhanced-with-js')
+```
+
+Hier mee zeg ik dat de body vanuit CSS de class enhanced-with-js toegewezen krijgt.
+
+###CSS
+
+De body heeft nu de class enhanced-with-js. Door deze class telkens te gebruiken kan ik de enhancede versie stylen. 
+
+Het doel van de buttons was dat deze wel gestyled konden worden met CSS en de audio tag bijna niet. Dus als volgt heb ik deze buttons gestyled met CSS via de class enhanced-with-js. 
+
+```
+.enhanced-with-js button {
+    width: 100px;
+    height: 100px;
+    background: #676caf;
+    color: azure;
+    font-size: 16px;
+    font-size: 1em;
+    margin: 8px;
+    border-radius: 6px;
+}
+```
+###Touch devices
+
+De beatbox heb ik ook getest op touch devices. Hier kwam de touch ervring op de buttons niet vrij natuurlijk over. 
+Er zat een delay tussen de touch en het daadwerkelijk afspelen van het geluid. Dit komt doordat bijna alle browsers een delay van 300ms op een touch event hebben ziiten. Dit doen de browser om te controleren of de gebruiker bijvoorbeeld niet een dubbel tap doet. Om dit natuurlijk te laten aanvoelen moest ik deze delay er af halen zodat het geluid direct afgespeeld zou worden. Dit heb ik d.m.v. de volgende code gedaan. 
+
+```javascript
+if ('ontouchstart' in document.documentElement) {
+            handler = 'touchstart';
+        } else {
+            handler = 'click';
+        }
+```
+
+Er wordt gekeken of het device ontouchstart ondersteund, als dat zo is wordt de handler touchstart en geen click meer. Zo is de reactie snelheid van de button 0 en is de delay van 300ms eraf. 
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
 
   
