@@ -13,88 +13,113 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="static/css/style.css">
     </head>
+       <script>
+          document.createElement('header');
+          document.createElement('nav');
+          document.createElement('main');
+          document.createElement('section');
+          document.createElement('article');
+          document.createElement('aside');
+          document.createElement('footer');
+       </script>
     
     <body>
         
         <main>
             
             <div>
-                <h1>Vunzige deuntjes</h1>
+                <header>
+                    <h1>Vunzige deuntjes</h1>
+                </header>
                 
-                <section>
-                    <h2>Hard kick</h2>
-                    <audio id="hardKick" src="sounds/hard-kick.mp3" data-key="65" preload="auto" controls loop>
-                        <a href="sounds/hard-kick.mp3">Download hard kick</a>
-                    </audio>
-                </section>
-
-                <section>
-                    <h2>Clap</h2>
-                    <audio id="clap" src="sounds/clap-tape.mp3" data-key="83" preload="auto" controls loop>
-                        <a href="sounds/clap-tape.mp3">Download clap</a>
-                    </audio>
-                </section>
-
-                <section>
-                    <h2>Crash</h2>
-                    <audio id="crash" src="sounds/cowbell-808.mp3" data-key="68" preload="auto" controls loop>
-                        <a href="sounds/cowbell-808.mp3">Download crash</a>
-                    </audio>
-                    
-                </section>
-
-                <section>
-                    <h2>Hihat</h2>
-                    <audio id="hihat" src="sounds/hihat-plain.mp3" data-key="70" preload="auto" controls loop>
-                        <a href="sounds/hihat-plain.mp3">Download hihat</a>
-                    </audio>    
-                </section>
-
-                <section>
-                    <h2>Kick</h2>
-                    <audio id="kick" src="sounds/kick-tape.mp3" data-key="71" preload="auto" controls loop>
-                        <a href="sounds/kick-tape.mp3">Download kick</a>
-                    </audio>
-                </section>
-
-                <section>
-                    <h2>Hat</h2>
-                    <audio id="hat" src="sounds/openhat-tight.mp3" data-key="72" preload="auto" controls loop>
-                        <a href="sounds/openhat-tight.mp3">Download hat</a>
-                    </audio>
-                </section>
-
-                <section>
-                    <h2>Perc</h2>
-                    <audio id="perc" src="sounds/perc-nasty.mp3" data-key="74" preload="auto" controls loop>
-                        <a href="sounds/perc-nasty.mp3">Download perc</a>
-                    </audio>
-                </section>
-
-                <section>
-                    <h2>Snare</h2>
-                    <audio id="snare" src="sounds/snare-big.mp3" data-key="75" preload="auto" controls loop>
-                        <a href="sounds/snare-big.mp3">Download snare</a>
-                    </audio>
-                </section>
+                <div id="controls">
+                    <h2 class="controlTitle">Effects</h2>
+                    <label>Notch</label>
+                    <input id="Notch" type="range" min="0" max="10000" step="1" value="50">
+                    <label>Lowpass</label>
+                    <input id="Low" type="range" min="0" max="10000" step="1" value="10000">
+                    <label>Highpass</label>
+                    <input id="High" type="range" min="0" max="10000" step="1" value="0">
+                </div>
                 
-                <section>
-                    <h2>Hip-hop</h2>
-                    <audio id="beat" src="sounds/beat.mp3" data-key="" preload="auto" controls loop>
-                        <a href="sounds/beat.mp3">Download beat</a>
-                    </audio>
-                </section>
-                
-                <section>
-                    <h2>Yeah!</h2>
-                    <audio id="snare" src="sounds/yeah.mp3" data-key="" preload="auto" controls loop>
-                        <a href="sounds/snare-big.mp3">Download yeah</a>
-                    </audio>
-                </section>
+                <div id="panel"> 
+                    <h2 class="controlTitle">Sounds</h2>
+                    <section class="section">
+                        <h2>Hard kick</h2>
+                        <audio id="hardKick" src="sounds/hard-kick.mp3" data-key="65" preload="auto" controls loop>
+                            <a href="sounds/hard-kick.mp3">Play</a>
+                        </audio>
+                    </section>
+
+                    <section class="section">
+                        <h2>Clap</h2>
+                        <audio id="clap" src="sounds/clap-tape.mp3" data-key="83" preload="auto" controls loop>
+                            <a href="sounds/clap-tape.mp3">Play</a>
+                        </audio>
+                    </section>
+
+                    <section class="section">
+                        <h2>Crash</h2>
+                        <audio id="crash" src="sounds/cowbell-808.mp3" data-key="68" preload="auto" controls loop>
+                            <a href="sounds/cowbell-808.mp3">Play</a>
+                        </audio>
+
+                    </section>
+
+                    <section class="section">
+                        <h2>Hihat</h2>
+                        <audio id="hihat" src="sounds/hihat-plain.mp3" data-key="70" preload="auto" controls loop>
+                            <a href="sounds/hihat-plain.mp3">Play</a>
+                        </audio>    
+                    </section>
+
+                    <section class="section">
+                        <h2>Kick</h2>
+                        <audio id="kick" src="sounds/kick-tape.mp3" data-key="71" preload="auto" controls loop>
+                            <a href="sounds/kick-tape.mp3">Play</a>
+                        </audio>
+                    </section>
+
+                    <section class="section">
+                        <h2>Hat</h2>
+                        <audio id="hat" src="sounds/openhat-tight.mp3" data-key="72" preload="auto" controls loop>
+                            <a href="sounds/openhat-tight.mp3">Play</a>
+                        </audio>
+                    </section>
+
+                    <section class="section">
+                        <h2>Perc</h2>
+                        <audio id="perc" src="sounds/perc-nasty.mp3" data-key="74" preload="auto" controls loop>
+                            <a href="sounds/perc-nasty.mp3">Play</a>
+                        </audio>
+                    </section>
+
+                    <section class="section">
+                        <h2>Snare</h2>
+                        <audio id="snare" src="sounds/snare-big.mp3" data-key="75" preload="auto" controls loop>
+                            <a href="sounds/snare-big.mp3">Play</a>
+                        </audio>
+                    </section>
+
+                    <section class="section">
+                        <h2>Hip-hop</h2>
+                        <audio id="beat" src="sounds/hiphop.mp3" data-key="76" preload="auto" controls loop>
+                            <a href="sounds/hiphop.mp3">Play</a>
+                        </audio>
+                    </section>
+
+                    <section class="section">
+                        <h2>Yeah!</h2>
+                        <audio id="snare" src="sounds/what.mp3" data-key="77" preload="auto" controls>
+                            <a href="sounds/what.mp3">Play</a>
+                        </audio>
+                    </section>
+                </div>
             </div>
             
         </main>
    
     </body>
+    <script src="static/js/sound.js"></script>
     <script src="static/js/script.js"></script>
 </html>

@@ -1,74 +1,220 @@
-body { 
-    font-family: Lato, arial, helvetica, sans-serif;
-    margin: 16px;
+html {font-size: 1em;}
+
+body {
+  background-color: white;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #333;
+  font-family: helvetica, arial, sans-serif;
+  margin: 0;
+  background-color: #EFEFEF;
 }
 
-.enhanced-with-js {
-    background: #050928;
+p {margin-bottom: 1.3em;}
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
 }
 
-.enhanced-with-js h1{
-    color: #050928;
-    margin-left: 8px;
-    font-size: 25px;
-    font-family: Tolerant;
-    border-bottom: 1px solid #444444;
-    width: 98%;
-    padding-bottom: 8px;
+h1 {
+  margin-top: 0;
+  font-size: 6.854em;
+}
+
+h2 {font-size: 4.236em;}
+
+h3 {font-size: 2.618em;}
+
+h4 {font-size: 1.618em;}
+
+small, .font_small {font-size: 0.618em;}
+
+header{
+    background: #19c589;
+    display: block;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.618em;
+    color: #fff;
+    margin-top: 40px;
+}
+
+h2 {
+    font-size: 1.618em;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #19c589;
+}
+
+.section {
+    float: left;
+    margin-left: 35px;
+    margin-right: 35px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 15%;
+}
+
+a {
+    text-decoration: none;
+    color: #19c589;
+    font-weight: 800;
+}
+
+a:hover {
+    color: #0bac74;
+}
+
+.enhanced-with-js h1 {
+    margin-top: 20px;
 }
 
 .enhanced-with-js h2 {
     display: none;
 }
 
-.enhanced-with-js a {
-    display: none;
-}
-
 .enhanced-with-js div {
-    width: 100%;
-    overflow: auto;
-    background: #cecece;
     margin: auto;
-    border-radius: 5px;
 }
 
-
-.enhanced-with-js button {
-    width: 100px;
-    height: 120px;
-    background: #676caf;
-    color: azure;
-    font-size: 16px;
-    font-size: 1em;
-    margin: 8px;
-}
-
-.enhanced-with-js .active {
-    border-style: inset;
-    background: #2E0854;
-}
-
-/*
-.enhanced-with-js div{
-    width: 300px;
-    overflow: auto;
-    background: #050928;
-    text-align: center;
+.enhanced-with-js #panel {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    max-width: 90%;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-top: 3rem;
+    background: #aeaeae;
+    border-radius: .2rem;
+    padding: .5rem;
 }
-*/
+
+.enhanced-with-js h1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+}
+
+.enhanced-with-js button {
+    width: 100%;
+    height: 120px;
+    background: #19c589;
+    color: azure;
+    font-size: 16px;
+    font-size: 1.5em;
+}
+
+.enhanced-with-js .active {
+    border-style: inset;
+    background: #0bac74;
+}
+
+.enhanced-with-js .section {
+    margin-left: 0;
+    margin-right: 0;
+    margin: 1rem;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -webkit-flex-basis: 20%;
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+}
+
+.enhanced-with-js section:last-of-type {
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: calc(50% - 2rem);
+}
+
+.enhanced-with-js section:nth-of-type(9) {
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: calc(50% - 2rem);
+}
+
+#controls {
+    display: none;
+}
 
 
-.enhanced-with-js section{
-    float: left;
+.enhanced-with-js .display {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    max-width: 90%;
+    margin-top: 3rem;
+    background: #aeaeae;
+    border-radius: .2rem;
+    padding: .5rem !important;
 }
+
+.enhanced-with-js .controlTitle {
+    display: block;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

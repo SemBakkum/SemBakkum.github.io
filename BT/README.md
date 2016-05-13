@@ -86,6 +86,8 @@
 
 #BT eindopdracht beatbox
 
+[Demo](http://sembakkum.github.io/BT/index.html "Beatbox demo")
+
 ##Onderzoek
 
 Uit de cases die beschikbaar waren voor de eindopdracht heb ik gekozen voor de beatbox.

@@ -1,0 +1,54 @@
+body { 
+    font-family: Lato, arial, helvetica, sans-serif;
+    margin: 16px;
+}
+
+.enhanced-with-js {
+    background: #050928;
+}
+
+.enhanced-with-js h1{
+    color: #050928;
+    margin-left: 8px;
+    font-size: 25px;
+    font-family: Tolerant;
+    border-bottom: 1px solid #444444;
+    width: 98%;
+    padding-bottom: 8px;
+}
+
+.enhanced-with-js h2 {
+    display: none;
+}
+
+.enhanced-with-js a {
+    display: none;
+}
+
+.enhanced-with-js div {
+    width: 100%;
+    overflow: auto;
+    background: #cecece;
+    margin: auto;
+    border-radius: 5px;
+}
+
+
+.enhanced-with-js button {
+    width: 100px;
+    height: 120px;
+    background: #676caf;
+    color: azure;
+    font-size: 16px;
+    font-size: 1em;
+    margin: 8px;
+}
+
+.enhanced-with-js .active {
+    border-style: inset;
+    background: #2E0854;
+}
+
+.enhanced-with-js section{
+    float: left;
+}
