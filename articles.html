@@ -45,15 +45,353 @@
                     <p>Gulp</p>
                 </header>
                 <p><span class="image left"><img src="images/gulp.jpeg" alt="Gulp" /></span>
-                    Taskmanagers are occuring more and more, but what are these taskmanagers or task runners and why should we use them? Most of you have probably heard of Grunt or Gulp and maybe a lot more like Webpack, Broccoli or Cake. If you find yourself as a developer doing time consuming and boring tasks then a task runner could be the solution for you. For example task runners can do the following tasks for you: 
+                    Taskmanagers are occuring more and more, but what are these taskmanagers or task runners and why should we use them? Task runners can do jobs that are to time consuming or to boring for developers to do. So now we have the abillity to automate these tasks for us through task runners and the setup is quite easy. Most of you have probably heard of Grunt or Gulp and maybe a lot more like Webpack, Broccoli or Cake, but the biggest ones are Grunt and Gulp. Gulp is picking up speed and becomming a good opponent for Grunt. So if you find yourself as a developer doing time consuming and boring tasks then a task runner could be the solution for you. For example task runners can do the following tasks for you: 
                     <ul>
                         <li>Minification and concatenation of Javascript and CSS files</li>
                         <li>CSS preprocessing</li>
                         <li>Image optimisation</li>
                         <li>Unit testing and linting</li>
                     </ul>
-                    In this article I will be focussing on one of these task runners named Gulp and guess what, setting up a task runner is quite simpel.
+                    In this article I will be focussing on one of these task runners named Gulp and guess what, setting up a task runner is like steeling candy from a baby. I have to mention that Gulp work on node so if you don't have that installed on your computer you can go to <a href="https://nodejs.org/en/" target="_blank">the node website</a> and install it from there. 
+            </p>
+                <h2>Installing Gulp</h2>
+                <p>
+                    Setting up Gulp is really easy. Open your terminal and as I mentioned above Gulp works on node, so if you're not sure if you have node or which version you're running you can type in the following commands: 
+                    <pre><code>node -v</code></pre>
+
+                    If the terminal gives an output like command not found or something else you should need to install node from there website. Node works with the npm package manager, so if we want to install Gulp we will have to do that with npm. Installing Gulp is done with the following command: 
+                    <pre><code>npm install -g gulp</code></pre>
+            
+                    To install packages from npm you will always have to start your command with npm. It's possible that when your on an OSX or Linux system this command will not work. The fix is to use sudo. This lets the command know to run it as an administrator. Then the command will look like this: 
+                    <pre><code>sudo npm install -g gulp</code></pre>
+            
+                    The -g in the command means that we want to install the package globally. 
+                    To use gulp in your project you will have to go to your project folder via Terminal and install it there aswell. Make sure your project folder contains an package.json file. We need this file to write away the devDependencies. So installing Gulp can be achieved with the following command:
+                    <pre><code>cd myprojectfolder</code></pre>
+                    And then:
+                    <pre><code>npm install gulp --save-dev</code></pre>
+                    Same goes here for the sudo, if gulp won't install you will have to run the command as an administrator by adding sudo to it. 
+                    So now Gulp is installed to your project folder and saved in the devDependencies of the packages.json file.
                 </p>
+                <h2>Installing Gulp plugins</h2>
+                <p>Now that Gulp is installed lets start installing some plugins that we can use in our tasks. To find the plugins we need we can search Gulps plugin library <a href="http://gulpjs.com/plugins/" target="_blank">here</a>, but lets start with some easy to use plugins. To install these we have to go to our project folder via the terminal, but we're probable still in that folder. We are going to install plugins for the following tasks: 
+                    <ul>
+                        <li>Minify CSS (gulp-clean-css)</li>
+                        <li>CSS autoprefixer (gulp-autoprefixer)</li>
+                        <li>Compress images (gulp-imagemin)</li>
+                        <li>Live reload (gulp-livereload)</li>
+                        <li>Uglify JavaScript (gulp-uglify)</li>
+                        <li>JS hint (gulp-jshint)</li>
+                    </ul>
+        
+                    We will be installing these plugins with the following commands:
+                    <h3>Minify CSS</h3>
+                    <pre><code>npm install gulp-clean-css --save-dev</code></pre>
+                    <h3>CSS autoprefixer</h3>
+                    <pre><code>npm install --save-dev gulp-autoprefixer</code></pre>
+                    <h3>Compress images</h3>
+                    <pre><code>npm install --save-dev gulp-imagemin</code></pre>
+                    <h3>Live reload</h3>
+                    <pre><code>npm install --save-dev gulp-livereload</code></pre>
+                    <h3>Uglify JavaScript</h3>
+                    <pre><code>npm install --save-dev gulp-uglify</code></pre>
+                    <h3>JS hint</h3>
+                    <pre><code>npm install jshint gulp-jshint --save-dev</code></pre>
+                </p>
+    
+                <p>
+                    <h2>Minify CSS</h2>
+                    First we will start setting up our gulpfile.js in the root folder of our project. In this gulpfile we will start with first including gulp and then including our plugins. Our first piece of code will look like this: 
+                    <pre><code>// Include gulp
+var gulp = require('gulp');</code></pre>
+                    Now we can also include our minify CSS plugin as follows: 
+                    <pre><code>var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+ 
+gulp.task('minify-css', function() {
+    return gulp.src('styles/*.css')
+        .pipe(cleanCSS({debug: true}, function(details) {
+            console.log(details.name + ': ' + details.stats.originalSize);
+            console.log(details.name + ': ' + details.stats.minifiedSize);
+        }))
+        .pipe(gulp.dest('dist'));
+});</code></pre>
+                What we are doing here is telling Gulp to get all the files with a .css extension from the styles folder and minify these. We also want Gulp to debug the files if there should be any errors. When everyting is oké Gulp will log us the original file size and the new smaller file size. When all this is achieved Gulp wil put the new files in your dist folder. If you haven't made a dist folder Gulp will automaticly make one for you. Now lets extend the use of our Gulp file by adding the rest of the plugins.
+                </p>
+
+                <p>
+                    <h2>CSS autoprefixer</h2>
+                    <pre><code>var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+var autoprefixer = require('gulp-autoprefixer');
+ 
+gulp.task('minify-css', function() {
+    return gulp.src('styles/*.css')
+        .pipe(cleanCSS({debug: true}, function(details) {
+            console.log(details.name + ': ' + details.stats.originalSize);
+            console.log(details.name + ': ' + details.stats.minifiedSize);
+        }))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('prefix', function () {
+	return gulp.src('styles/*.css')
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions']
+		}))
+		.pipe(gulp.dest('dist'));
+});</code></pre>
+
+Now we are telling gulp to also include autoprefixer and get all the files with the .css extension in the styles folder. With the option browsers: ['last 2 versions], we are telling the plugin to prefix the css for the last 2 versions of all major browsers. Eventually when this is done move the new files to the dist folder of our project. 
+                </p>
+<p>
+                    <h2>Compress images</h2>
+                    <pre><code>var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+var autoprefixer = require('gulp-autoprefixer');
+var imagemin = require('gulp-imagemin');
+ 
+gulp.task('minify-css', function() {
+    return gulp.src('styles/*.css')
+        .pipe(cleanCSS({debug: true}, function(details) {
+            console.log(details.name + ': ' + details.stats.originalSize);
+            console.log(details.name + ': ' + details.stats.minifiedSize);
+        }))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('prefix', function () {
+	return gulp.src('styles/*.css')
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions']
+		}))
+		.pipe(gulp.dest('dist'));
+});
+gulp.task('minify-img', () =>
+	gulp.src('src/images/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('dist/images'))
+);
+</code></pre>
+
+Actually we are dping the same thing as we did before, we're tellng Gulp where to get the files, what to do with them and where to put the modified files when it's done. So now we're telling get all the files in the images folder, minify these and place them in the dist/images folder. 
+                </p>
+
+<p>
+                    <h2>Live reload</h2>
+Live reload is a great plugin, everytime Gulp sees a change or makes a change to the files it automatically reloads your webpage. 
+                    <pre><code>var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+var autoprefixer = require('gulp-autoprefixer');
+var imagemin = require('gulp-imagemin');
+var livereload = require('gulp-livereload');
+ 
+gulp.task('minify-css', function() {
+    return gulp.src('styles/*.css')
+        .pipe(cleanCSS({debug: true}, function(details) {
+            console.log(details.name + ': ' + details.stats.originalSize);
+            console.log(details.name + ': ' + details.stats.minifiedSize);
+        }))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('prefix', function () {
+	return gulp.src('styles/*.css')
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions']
+		}))
+		.pipe(gulp.dest('dist'));
+});
+gulp.task('minify-img', () =>
+	gulp.src('src/images/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('dist/images'))
+);
+
+gulp.task('watch', function() {
+  livereload.listen();
+  gulp.watch('styles/*.css', ['prefix', 'minify-css']);
+  gulp.watch('src/images/*', ['minify-img']);
+});
+</code></pre>
+
+We are telling live reload to keep track of changes in certain files, like our styles.css. If there are changes use prefix and minify-css to handle these changes. At that point these two tasks will take over. We will keep adding tasks to out live reload during the setup of our gulpfile.js. 
+                </p>
+
+<p>
+                    <h2>Uglify JavaScript</h2> 
+                    <pre><code>var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+var autoprefixer = require('gulp-autoprefixer');
+var imagemin = require('gulp-imagemin');
+var livereload = require('gulp-livereload');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
+ 
+gulp.task('minify-css', function() {
+    return gulp.src('styles/*.css')
+        .pipe(cleanCSS({debug: true}, function(details) {
+            console.log(details.name + ': ' + details.stats.originalSize);
+            console.log(details.name + ': ' + details.stats.minifiedSize);
+        }))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('prefix', function () {
+	return gulp.src('styles/*.css')
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions']
+		}))
+		.pipe(gulp.dest('dist'));
+});
+gulp.task('minify-img', () =>
+	gulp.src('src/images/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('dist/images'))
+);
+
+gulp.task('compress', function (cb) {
+  pump([
+        gulp.src('lib/*.js'),
+        uglify(),
+        gulp.dest('dist')
+    ],
+    cb
+  );
+});
+
+gulp.task('watch', function() {
+  livereload.listen();
+  gulp.watch('styles/*.css', ['prefix', 'minify-css']);
+  gulp.watch('src/images/*', ['minify-img']);
+  gulp.watch('lib/*.js', ['compress']);
+});
+</code></pre>
+
+For this plugin we are including uglify and pump, we are using pump to properly handle error conditions with Node streams. What we are telling the task is get all the files with a .js extension in the lib folder and uglify these, when you're done put them in the dist folder. Now we have to add this one to our livereload and we are done with uglify. 
+                </p>
+
+<p>
+                    <h2>JS hint</h2> 
+                    <pre><code>var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+var autoprefixer = require('gulp-autoprefixer');
+var imagemin = require('gulp-imagemin');
+var livereload = require('gulp-livereload');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
+var jshint = require('gulp-jshint');
+ 
+gulp.task('minify-css', function() {
+    return gulp.src('styles/*.css')
+        .pipe(cleanCSS({debug: true}, function(details) {
+            console.log(details.name + ': ' + details.stats.originalSize);
+            console.log(details.name + ': ' + details.stats.minifiedSize);
+        }))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('prefix', function () {
+	return gulp.src('styles/*.css')
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions']
+		}))
+		.pipe(gulp.dest('dist'));
+});
+gulp.task('minify-img', () =>
+	gulp.src('src/images/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('dist/images'))
+);
+
+gulp.task('compress', function (cb) {
+  pump([
+        gulp.src('lib/*.js'),
+        uglify(),
+        gulp.dest('dist')
+    ],
+    cb
+  );
+});
+
+gulp.task('lint', function() {
+  return gulp.src('lib/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('watch', function() {
+  livereload.listen();
+  gulp.watch('styles/*.css', ['prefix', 'minify-css']);
+  gulp.watch('src/images/*', ['minify-img']);
+  gulp.watch('lib/*.js', ['compress', 'lint']);
+});
+</code></pre>
+
+Here we added the lint task. Each time there is a change in a .js file in the lib folder the lint task will run through that file and log the errors in our terminal, if there are any errors. These errors will consist of semantically errors in JavaScript. Eventually we also add this task to our livereload task. 
+                </p>
+
+<p>
+    <h2>The default task</h2>
+    At last we can make a default task, this task will run all the tasks that we have created just by using one command in our terminal. 
+
+    The default task will look like this: 
+                    <pre><code>var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+var autoprefixer = require('gulp-autoprefixer');
+var imagemin = require('gulp-imagemin');
+var livereload = require('gulp-livereload');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
+var jshint = require('gulp-jshint');
+ 
+gulp.task('minify-css', function() {
+    return gulp.src('styles/*.css')
+        .pipe(cleanCSS({debug: true}, function(details) {
+            console.log(details.name + ': ' + details.stats.originalSize);
+            console.log(details.name + ': ' + details.stats.minifiedSize);
+        }))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('prefix', function () {
+	return gulp.src('styles/*.css')
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions']
+		}))
+		.pipe(gulp.dest('dist'));
+});
+gulp.task('minify-img', () =>
+	gulp.src('src/images/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('dist/images'))
+);
+
+gulp.task('compress', function (cb) {
+  pump([
+        gulp.src('lib/*.js'),
+        uglify(),
+        gulp.dest('dist')
+    ],
+    cb
+  );
+});
+
+gulp.task('lint', function() {
+  return gulp.src('lib/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('watch', function() {
+  livereload.listen();
+  gulp.watch('styles/*.css', ['prefix', 'minify-css']);
+  gulp.watch('src/images/*', ['minify-img']);
+  gulp.watch('lib/*.js', ['compress', 'lint']);
+});
+
+gulp.task('default', ['minify-css', 'prefix', 'minify-img', 'compress', 'lint', 'watch']);
+</code></pre>
+We can run this default task by typing the following command in our terminal: 
+<pre><code>gulp</code></pre>
+</p>
+
+<p>I hope this will be a good start for everyone that wants to try Gulp.</p>
+
             </div>
         </section>
         <section id="main" class="wrapper">

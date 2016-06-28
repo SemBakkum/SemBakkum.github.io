@@ -481,7 +481,7 @@
 		}
 
 			.image.left img, .image.right img {
-				width: 100%;
+				width: 95%;
 			}
 
 		.image.fit {
@@ -724,10 +724,7 @@
 		-o-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-		-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		-o-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		background-color: #3ba666;
 		border-radius: 4px;
@@ -918,10 +915,7 @@
 				}
 
 					#header nav > ul > li a {
-						-moz-transition: color 0.2s ease-in-out;
 						-webkit-transition: color 0.2s ease-in-out;
-						-o-transition: color 0.2s ease-in-out;
-						-ms-transition: color 0.2s ease-in-out;
 						transition: color 0.2s ease-in-out;
 						color: #cee8d8;
 						display: inline-block;
@@ -1006,7 +1000,7 @@
 		.wrapper.style1 {
 			background-color: #3ba666;
 			-moz-background-image: linear-gradient(60deg, #4dac71 50%, #3ba666 50%);
-			-webkit-background-image: linear-gradient(60deg, #4dac71 50%, #3ba666 50%);
+			-webkit-background-image: -webkit-linear-gradient(30deg, #4dac71 50%, #3ba666 50%);
 			-o-background-image: linear-gradient(60deg, #4dac71 50%, #3ba666 50%);
 			-ms-background-image: linear-gradient(60deg, #4dac71 50%, #3ba666 50%);
 			background-image: linear-gradient(60deg, #4dac71 50%, #3ba666 50%);
@@ -1052,10 +1046,7 @@
 		}
 
 		#footer a {
-			-moz-transition: all 0.2s ease-in-out;
 			-webkit-transition: all 0.2s ease-in-out;
-			-o-transition: all 0.2s ease-in-out;
-			-ms-transition: all 0.2s ease-in-out;
 			transition: all 0.2s ease-in-out;
 			color: #888;
 		}
