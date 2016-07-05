@@ -422,12 +422,100 @@ We can run this default task by typing the following command in our terminal:
                     Some people call Github a publishing tool, a version control system or a collaboration platform. Well actually Github is all of these in one and this is how Github describes what Github is: <blockquote>GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.</blockquote>
                     
                     In Github you can make your own repository (Actually your own project) and host these repositories remote and local. The cool thing is that people can join these repositories and also work on them or even copy them to there own account. Copying these repositories is called making a fork, but why is Github so cool? Well you will find out in this article. 
-                
-                    <h2>Creating a repositorie</h2>
+                </p>
+                <p>
+                    <h2>Creating a repository</h2>
                 
                     The first thing we want to do is go to <a href="https://github.com/">Github</a> and create and account. When you have done that you can go to your profile, click repositories and you will see a green button that says new. By clicking on this button we will create a new repository. You can give your repositorie a name and a short description (like what the project/repo is about) and then select initialize this repository with a README. 
                 
-                    <img alt="github create repository" src="images/create-new-repo.png">
+                    <img alt="github create repository" src="images/create-new-repo.png" width="800px"> <br />
+                
+                    At last we click create repository and our repository is made.
+                </p>
+                <p>
+                    <h2>Github branches</h2>
+                    
+                    Github works with branches. In these branches you build your features or fixes. By default your repository has a branch called master. This is your main branch where all your features and fixes will be merged or pushed to. The main rule is that everything (so all the code) in master is always deployable. This is the point we start to handle the Github workflow, which is as follows: 
+                    <p>
+                        <ul>
+                            <li>Anything in the master branch is deployable</li>
+                            <li>To work on something new, create a descriptively named branch off of master (ie: new-oauth2-scopes)</li>
+                            <li>Commit to that branch locally and regularly push your work to the same named branch on the server</li>
+                            <li>When you need feedback or help, or you think the branch is ready for merging, open a pull request</li>
+                            <li>After someone else has reviewed and signed off on the feature, you can merge it into master</li>
+                            <li>Once it is merged and pushed to ‘master’, you can and should deploy immediately</li>
+                        </ul>
+                    </p>
+
+                    Now that we know these basic rules lets create our first branch off of master. 
+                    
+                </p>
+                <p>
+                    <h2>Creating a branch</h2>
+
+                    When you are creating a branch you are actually making a copy of master which you work on locally. There are multiple options to create a branch, we can do it on the github website itself or create one via our terminal. When we make a new branch via our terminal we first have to navigate to the folder of our local Github repository and then type in the following command 
+                    <p><pre><code>git checkout -b your-new-branch-name</code></pre></p>
+                    Git will automatically switch to your new branch, so from this point you can make changes to your code and these changes will be stored in your new branch. This code changes or new pieces of code can be a feature you are working on or a fix that you are making. When you are done you can push your new branch to the server (also called to remote).
+                </p>
+                <p>
+                    <h2>Pushing a branch form local to remote</h2>
+                    
+                    To push our new branch to the remote(server) we have to use a few commands. At first we have to add all our changes, we can do this by using the following command: 
+                    <p><pre><code>git add .</code></pre></p>
+                    By using the . we are telling Git that it can add all the changes we made. 
+                    Next we need to commit our new feature and also tell what we have committed. We can do that with the following command:
+                    <p><pre><code>git commit -am"Our commit message"</code></pre></p>
+                        
+                    The last thing we have to do is push our new branch with a commit to our remote (server), we can do this with the following command: 
+                    <p><pre><code>git push origin your-new-branch-name</code></pre></p>
+
+                    With this command our branch is pushed to the remote where it will wait for us to make a pull request. 
+                </p>
+                <p>
+                    <h2>Making a pull request</h2>
+                    
+                    Follow these steps to make a pull request. 
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Step</th>
+                          <th>Screenshot</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Click the <span class="octicon octicon-git-pull-request"></span> <strong>Pull Request</strong> tab, then from the Pull Request page, click the green <strong>New pull request</strong> button.</td>
+                          <td><img width="500px" src="images/pr-tab.gif" alt="pr-tab"></td>
+                        </tr>
+                        <tr>
+                          <td>Select the branch you made, <code class="highlighter-rouge">readme-edits</code>, to compare with <code class="highlighter-rouge">master</code> (the original).</td>
+                          <td><a href="pick-branch.png"><img  width="500px"src="images/pick-branch.png" alt="branch"></a></td>
+                        </tr>
+                        <tr>
+                          <td>Look over your changes in the diffs on the Compare page, make sure they’re what you want to submit.</td>
+                          <td><a href="diff.png"><img width="500px" src="images/diff.png" alt="diff"></a></td>
+                        </tr>
+                        <tr>
+                          <td>When you’re satisfied that these are the changes you want to submit, click the big green <strong>Create Pull Request</strong> button.</td>
+                          <td><a href="create-pr.png"><img width="500px" src="images/create-pr.png" alt="create-pull"></a></td>
+                        </tr>
+                        <tr>
+                          <td>Give your pull request a title and write a brief description of your changes.</td>
+                          <td><img width="500px" src="images/pr-form.png" alt="pr-form"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    When you have made a pull request other developers that are working on the same project can review the code you have made, when they also so the code is okay you can merge the code with master.
+                </p>
+
+                <p>
+                    <h2>Merge your new branch</h2>
+                    
+                    To merge your pull request with master just hit the merge pull request button. Git will automatically check if your pull request is mergeable with the master branch. If this isn't possible Git will let you know that there is a merge conflict. Git will provide you with the information and the steps you have to take to fix this merge conflict. If everything is found good Git will let you know the pull request is succesfully merged. 
+                    
+                    <img src="images/merge-button.png" alt="https://guides.github.com/activities/hello-world/" width="800px"> <br />
+                    <img src="images/delete-button.png" alt="https://guides.github.com/activities/hello-world/" width="800px"> <br />
                 </p>
             </div>
         </section>
