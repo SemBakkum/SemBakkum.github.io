@@ -547,8 +547,67 @@ We can run this default task by typing the following command in our terminal:
                 </p>
                 <p>
                     <h2>Semantic forms</h2>
-                    
+                    Browsers already give us a lot of functionality for a form by just declaring the correct elements and writing the HTML semantically. That's a mistake I made during this minor. I went to JavaScript to quickly before realizing I didn't need JavaScript, or only just a little bit, to fullfill what I wanted to accomplish with the form. Here is a good tip:</p> <blockquote>Visit <a href="https://html.spec.whatwg.org/multipage/">whatwg.org</a></blockquote>
+                    <p>Whatwg describes the form spec as follows: <i>"The form element represents a collection of form-associated elements, some of which can represent editable values that can be submitted to a server for processing."</i>
+                    So how do we write a form that is semantically correct, well let's just cut to the chase and show some code!</p> 
+                    <p><img src="images/form%20example.png" alt="Code example of a semantic form in HTML"><br /></p>
+                    Because we have multiple inputs we make separate paragraphs for each input with their own label. We use labels to let people with screenreaders know what the input field is about. Now a days you see a lot of form which use the placeholder of the input as a label, but how should for example blind people now what the input is about since screenreaders don't read a placeholder text. As you can see the label has a "for" attribute. This attribute tells the user which type of input the label is for, but when the input, or thing we are labeling, is a descendant of the label there is no need to use the "for" attribute. So the semantic will look like this:</p>
+                    <p><img src="images/formwithoutfor.png" alt="Form semanti without using the for attribute"><br /></p>
+                    The only thing our form misses is a button, why a button and not an a tag? An a tag is used for links and not for actions we want to be done. We can give the button a type of submit which tells the browser to do something with the form based on the method we provided the form with. This method can be a post or a get method. Post meaning we want to send the filled in form to our server, or when it is a search form we maybe want to get information from our server by using the get method. Either way we also have to include the form with a action. The action contains the URI we want to send the form to or get information from. The type submit isn't the only attribute type we can give to a button. In total there are three types we can address to a button within a form:
+                    <p>
+                        <ul>
+                            <li>A submit button sends the form's data to the web page defined by the action attribute of the &lt;form&gt; element.</li>
+                            <li>A reset button resets all the form widgets to their default values immediately. From a user experience point of view, using these buttons is now considered bad practice and should be avoided; it makes it far too easy for the user to accidentally lose all their work.</li>
+                            <li>An anonymous button has no inherent meaning; instead, you use JavaScript to give it a function.</li>
+                        </ul>
+                    </p>
+                    For more information on semantic forms I recommend you to take a look at the following link: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/How_to_structure_an_HTML_form">How to structure an HTML form</a>
                 </p>
+                <p>
+                    <h2>Diviritus</h2>
+                    When developers don't know which HTML element they should use they tend to use a &lt;div&gt; tag. Most of the times there is a tag that can be used instead of a div and when you use the div you end up using ARIA to describe what the tag actually is. What you see around the web is that many developers use div's when they can also use a &lt;section&gt; tag. I saw this problem in a project I was doing for the minor. So to get things clear, when should you use a div and when should you use a section? Well the answer is pretty simple, use a div tag when its purpose is purely for styling. Use a section tag when you know that it will contain a heading. This is how Mozilla Developers Network (MDN) described the div element: 
+
+                    <p><blockquote>The HTML &lt;div&gt; element (or HTML Document Division Element) is the generic container for flow content, which does not inherently represent anything. It can be used to group elements for styling purposes (using the class or id attributes), or because they share attribute values, such as lang. It should be used only when no other semantic element (such as &lt;article&gt; or &lt;nav&gt;) is appropriate.</blockquote></p>
+
+                    And this is how whatwg.org describes the section tag: 
+                    <p><blockquote>The section element represents a generic section of a document or application. A section, in this context, is a thematic grouping of content, typically with a heading.</blockquote></p>
+                    
+                    So how should a semantically correct section look? Like this: 
+
+                    <p><img src="images/semanticsection.png" alt="code for an semantic use of the section tag"></p>
+                    
+                    The way this piece of code is build up with the use of the headings brings me to the following, something called structured heading. I first heard of this during a talk I attended at the minor from a blind web-developer. 
+                </p>
+                <p>
+                    <h2>Structured headings</h2>
+                    To make structured headings the first heading on the page must be a &lt;h1&gt;, this heading will contain what the page is about. So for the home page this could be the the name of the website in the header. W3C describes it as followed:
+                    <p><blockquote>[I]n HTML, H2 elements should follow H1 elements, H3 elements should follow H2 elements, etc. Content developers should not “skip levels (e.g., H1 directly to H3).</blockquote></p>
+                    The benefit of structered headings is that people that use screenreaders can skip through the content pretty fast. With there screenreader they can say give me all headeings on the page. So lets say our h1 is the name of our website, the first h2 is “what we do”, the second h2 is “our product” and the third h2 is “our partners”. Screenreader users will get a list that like this:
+                    <p>
+                        <ul>
+                            <li>H1: Website name</li>
+                            <li>H2: What we do</li>
+                            <li>H2: Our product</li>
+                            <li>H2: Our partners</li>
+                        </ul>
+                    </p>
+                    In this way the users can read the page much quicker. If you wouldn’t have structured headings a user must either read the complete page or tab through the whole page if they would only want to know who your partners are.
+
+                    <p>
+                        To top it of here are a few checklists you can use to make sure you are writing HTML that is more semantic and better accessible.<br /> 
+                        <a href="https://www.utexas.edu/learn/accessibility/samplehtml.html">Accessible HTML Samples</a><br />
+                        <a href="http://accessibility.psu.edu/checklist/">Accessibility Checklist</a>
+                    </p>
+
+                </p>
+<p>
+    <h2>Sources</h2>
+    <a href="https://html.spec.whatwg.org/multipage/semantics.html#the-section-element">Source 1</a><br />
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">Source 2</a><br />
+    <a href="https://html.spec.whatwg.org/multipage/forms.html#the-form-element">Source 3</a><br />
+    <a href="https://www.youtube.com/watch?v=8dr_IUGwsO0&list=PLNYkxOF6rcIAWWNR_Q6eLPhsyx6VvYjVb&index=13">Source 3</a><br />
+    <a href="http://www.clarissapeterson.com/2012/11/html5-accessibility/">Source 3</a><br />
+</p>
             </div>
         </section>
 	</body>
