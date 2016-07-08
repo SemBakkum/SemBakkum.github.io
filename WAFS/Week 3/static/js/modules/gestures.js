@@ -13,7 +13,7 @@ var gestures = (function(){
 				console.log(window.location.hash);
 				routie( window.location.hash + '/overview')
 			});
-		}
+		};
 
 		var right = function(){
 			var mc = new Hammer(overviewDisplay);
@@ -24,7 +24,7 @@ var gestures = (function(){
 				console.log(routie);
 				overviewDisplay.classList.remove('active')
 			});
-		}
+		};
 
 		 var shake = function(){
 			var myShakeEvent = new Shake({
@@ -40,7 +40,7 @@ var gestures = (function(){
 			function shakeEventDidOccur () {
 				window.location = 'app.html'
 			};
-		}
+		};
 
 		return{
 			left: left,

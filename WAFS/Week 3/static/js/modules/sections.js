@@ -49,7 +49,7 @@ var sections = (function(){
 			//Renders template with data.
 			Transparency.render(weatherDisplay, weatherData, directives);
 		});
-	}
+	};
 
 	var overview = function(city) {
 
@@ -88,7 +88,7 @@ var sections = (function(){
 
 			Transparency.render(overviewDisplay, weatherOverview, directives);
 		});
-	}
+	};
 
 	return{
 		current: current,
