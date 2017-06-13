@@ -56,7 +56,7 @@ var sections = (function(){
 		loading.start();
 
 		retrieve.forecastData(city, function(data){
-
+			//loading.stop call on end of function, data render can take more time while your loader has already stopped
 			loading.stop();
 
 			var data = JSON.parse(data);
