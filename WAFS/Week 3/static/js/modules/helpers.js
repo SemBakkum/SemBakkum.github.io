@@ -1,9 +1,9 @@
 var helpers = (function(){
 	'use strict'
 
-	var calculateDatetime = function(timestamp, withTime) {
-		var datetime = parseInt(timestamp);
-		var date = new Date(datetime*1000);
+	var calculateDateTime = function(timestamp, withTime) {
+		var dateTime = parseInt(timestamp);
+		var date = new Date(dateTime*1000);
 		var maanden = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December'];
 		var dag = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'];
 
@@ -19,7 +19,7 @@ var helpers = (function(){
 	}
 
 	return {
-		calculateDatetime: calculateDatetime,
+		calculateDateTime: calculateDateTime,
 		getIcon: getIcon
 	}
 
