@@ -38,7 +38,7 @@ var gestures = (function(){
 
 			//function to call when shake occurs
 			function shakeEventDidOccur () {
-				window.location = 'app.html'
+				window.location = 'index.html'
 			};
 		}
 
