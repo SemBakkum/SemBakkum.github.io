@@ -1,11 +1,6 @@
 (function () {
 	'use strict'
 
-	//putting the sections in vars for later use.
-	var homeDisplay = document.getElementById('home');
-	var weatherDisplay = document.getElementById('current');
-	var overviewDisplay = document.getElementById('overview');
-
 	var app = {
 		init: function(){
 			routes.init();
@@ -92,6 +87,15 @@
 	};
 
 	var request = {
+		// je zou van je url variable kunnen maken is netter bijv.: 
+		var apiUrl = {
+			baseUrl: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=Amsterdam&appid=d55e532e359ca4e0b28bc4cf0ae34bce&units=metric',
+			chipUrl: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=', 
+			id: '&appid=d55e532e359ca4e0b28bc4cf0ae34bce&units=metric'
+		};
+
+
+
 		currentData: function(city, cb) {
 			microAjax('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=nl&appid=44db6a862fba0b067b1930da0d769e98', cb)
 		},
